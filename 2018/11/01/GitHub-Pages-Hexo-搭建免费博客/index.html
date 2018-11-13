@@ -159,7 +159,7 @@
 <meta property="og:description" content="在决定写博客之后，我们首要面临的问题就是如何完成个人博客的初始化工作。此处，个人选择了 GitHub Pages + Hexo 的博客搭建方案。对博客方案选择过程有兴趣的或者有自身明确需求的读客可以阅读 博客的需求 和 博客搭建的选择 两部分以决定是否阅读本博客的方案，若决定使用与本博客同样的解决方案，可以直接阅读本博客的方案。">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://blogimages-1252423296.cos.ap-beijing.myqcloud.com/blog_pictures/11%E6%9C%88/11-1-NexT_Default.png">
-<meta property="og:updated_time" content="2018-11-13T10:03:06.530Z">
+<meta property="og:updated_time" content="2018-11-13T10:08:42.222Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="GitHub Pages + Hexo 搭建免费博客">
 <meta name="twitter:description" content="在决定写博客之后，我们首要面临的问题就是如何完成个人博客的初始化工作。此处，个人选择了 GitHub Pages + Hexo 的博客搭建方案。对博客方案选择过程有兴趣的或者有自身明确需求的读客可以阅读 博客的需求 和 博客搭建的选择 两部分以决定是否阅读本博客的方案，若决定使用与本博客同样的解决方案，可以直接阅读本博客的方案。">
@@ -435,7 +435,7 @@
                 
                   <span class="post-meta-item-text">Edited on</span>
                 
-                <time title="Modified: 2018-11-13 18:03:06" itemprop="dateModified" datetime="2018-11-13T18:03:06+08:00">2018-11-13</time>
+                <time title="Modified: 2018-11-13 18:08:42" itemprop="dateModified" datetime="2018-11-13T18:08:42+08:00">2018-11-13</time>
               
             
           </span>
@@ -652,8 +652,11 @@
 </ul>
 <figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">&#123;% if page.comments &amp;&amp; theme.gitalk.enable %&#125;</span><br><span class="line">  &lt;link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css"&gt;</span><br><span class="line">  &lt;script src="https://unpkg.com/gitalk/dist/gitalk.min.js"&gt;&lt;/script&gt;</span><br><span class="line"></span><br><span class="line">  &lt;script src="/js/src/md5.min.js"&gt;&lt;/script&gt;  # &lt;— 添加的上述脚本的路径</span><br><span class="line"></span><br><span class="line">  &lt;script type="text/javascript"&gt;</span><br><span class="line">        var gitalk = new Gitalk(&#123;</span><br><span class="line">          clientID: '&#123;&#123; theme.gitalk.ClientID &#125;&#125;',</span><br><span class="line">          clientSecret: '&#123;&#123; theme.gitalk.ClientSecret &#125;&#125;',</span><br><span class="line">          repo: '&#123;&#123; theme.gitalk.repo &#125;&#125;',</span><br><span class="line">          owner: '&#123;&#123; theme.gitalk.githubID &#125;&#125;',</span><br><span class="line">          <span class="selector-tag">admin</span>: <span class="selector-attr">['&#123;&#123; theme.gitalk.adminUser &#125;&#125;']</span>,</span><br><span class="line">          <span class="selector-tag">id</span>: <span class="selector-tag">md5</span>(<span class="selector-tag">location</span><span class="selector-class">.pathname</span>),  # &lt;— 使用上述脚本中的函数加密</span><br><span class="line">          distractionFreeMode: '&#123;&#123; theme.gitalk.distractionFreeMode &#125;&#125;'</span><br><span class="line">        &#125;)</span><br><span class="line">        gitalk.render('gitalk-container')</span><br><span class="line">       &lt;/script&gt;</span><br><span class="line">&#123;% endif %&#125;</span><br></pre></td></tr></table></figure>
 <ul>
-<li>修改<code>index.swig</code>，在其末尾添加 <figure class="highlight plain"><figcaption><span>include 'gitalk.swig' %&#125;```将上述文件注册</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">* 修改主题目录中 `/layout/_partials/comments.swig`文件，在`&#123;% endif %&#125;`前添加如下内容</span><br><span class="line"></span><br><span class="line">```shell</span><br><span class="line">&#123;% elseif theme.gitalk.enable %&#125;</span><br><span class="line">	&lt;div id=&quot;gitalk-container&quot;&gt;&lt;/div&gt;</span><br></pre></td></tr></table></figure></li>
+<li>修改<code>index.swig</code>，在其末尾添加如下内容，将上述文件注册</li>
 </ul>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#123;% include 'gitalk.swig' %&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>修改主题目录中 <code>/layout/_partials/comments.swig</code>文件，在<figure class="highlight plain"><figcaption><span>endif %&#125;```前添加如下内容</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">```shell</span><br><span class="line">&#123;% elseif theme.gitalk.enable %&#125;</span><br><span class="line">	&lt;div id=&quot;gitalk-container&quot;&gt;&lt;/div&gt;</span><br></pre></td></tr></table></figure></p>
 </li>
 <li><p>主题目录下<code>/source/css/_common/components/third-party</code>文件夹中</p>
 <ul>
