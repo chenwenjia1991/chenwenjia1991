@@ -159,7 +159,7 @@
 <meta property="og:description" content="在决定写博客之后，我们首要面临的问题就是如何完成个人博客的初始化工作。此处，个人选择了 GitHub Pages + Hexo 的博客搭建方案。对博客方案选择过程有兴趣的或者有自身明确需求的读客可以阅读 博客的需求 和 博客搭建的选择 两部分以决定是否阅读本博客的方案，若决定使用与本博客同样的解决方案，可以直接阅读本博客的方案。">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://blogimages-1252423296.cos.ap-beijing.myqcloud.com/blog_pictures/11%E6%9C%88/11-1-NexT_Default.png">
-<meta property="og:updated_time" content="2018-11-14T08:51:01.307Z">
+<meta property="og:updated_time" content="2018-11-14T11:17:02.926Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="GitHub Pages + Hexo 搭建博客">
 <meta name="twitter:description" content="在决定写博客之后，我们首要面临的问题就是如何完成个人博客的初始化工作。此处，个人选择了 GitHub Pages + Hexo 的博客搭建方案。对博客方案选择过程有兴趣的或者有自身明确需求的读客可以阅读 博客的需求 和 博客搭建的选择 两部分以决定是否阅读本博客的方案，若决定使用与本博客同样的解决方案，可以直接阅读本博客的方案。">
@@ -435,7 +435,7 @@
                 
                   <span class="post-meta-item-text">Edited on</span>
                 
-                <time title="Modified: 2018-11-14 16:51:01" itemprop="dateModified" datetime="2018-11-14T16:51:01+08:00">2018-11-14</time>
+                <time title="Modified: 2018-11-14 19:17:02" itemprop="dateModified" datetime="2018-11-14T19:17:02+08:00">2018-11-14</time>
               
             
           </span>
@@ -682,7 +682,12 @@
 <p>在编辑时，除了通过传统的 Markdown 代码的方式来实现富文本之外，Typora 支持通过菜单栏或者鼠标右键选取命令的方式来实现富文本，也支持通过快捷键的方式插入。Typora 也支持通过以 TeX 的格式来插入行间公式和行内公式。在完成编辑后导出文件时，Typora 支持以 PDF 或 HTML 的形式导出，如果安装了 <a href="https://zh.wikipedia.org/wiki/Pandoc" target="_blank" rel="noopener">Pandoc</a>，也能够以Word、RTF、MediaWiki、LaTeX 等形式导出。Typora 提供有几种主题，并支持通过自定义 CSS 的方式进行个性化定制。</p>
 <p>目前博客的编写我使用该软件完成，主要由于该目录独立，又不需要在多台电脑间同步。</p>
 <h4 id="印象笔记-amp-马克飞象"><a href="#印象笔记-amp-马克飞象" class="headerlink" title="印象笔记 &amp; 马克飞象"></a>印象笔记 &amp; 马克飞象</h4><p><a href="https://www.yinxiang.com/" target="_blank" rel="noopener">印象笔记</a>是我目前使用的笔记记录工具，两个月前开始支持 Markdown 文法，但整体来说，还处于测试阶段，用户体验有待提高。<a href="https://maxiang.io/" target="_blank" rel="noopener">马克飞象</a>是基于印象笔记的 Markdown 编辑工具，优点是数据存入印象笔记，因此用户可直接通过印象笔记阅读，但无法修改，流畅性好，稳定；缺点马克飞象的维护团队只有一个人，因此相比较与其他产品未完全成熟，如目前不支持 SSL/HTTPS 协议，存在安全隐患，功能添加较为缓慢。马克飞象是付费产品，79元/年。若 Markdown 编辑使用频率高，且需要在不同场合设备间切换，对数据安全性要求没有太高，推荐该产品。</p>
-<h4 id="Markdown-写作注意事项"><a href="#Markdown-写作注意事项" class="headerlink" title="Markdown 写作注意事项"></a>Markdown 写作注意事项</h4><p>此处主要收集记录一些博客撰写过程中，应该注意的事项，可能会不断扩展，错误标记为<font color="#dd0000"><figure class="highlight plain"><figcaption><span></span></figcaption></figure></font>会导致静态网页无法产生。<table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">1. &lt;font color=&quot;#dd0000&quot;&gt;```Error``` &lt;/font&gt;行内代码引用时尽量使用三个反引号而不是一个反引号，因为代码中出现百分号或其他转义符时容易引发 Hexo 生成静态网页的错误，如下所示</span><br><span class="line"></span><br><span class="line">   ```shell</span><br><span class="line">   # 使用一个反引号后转义失败 &#123;%code format error!%&#125; 引发如下错误</span><br><span class="line">   INFO  Start processing</span><br><span class="line">   FATAL Something&apos;s wrong. Maybe you can find the solution here: http://hexo.io/docs/troubleshooting.html</span><br><span class="line">   Template render error: (unknown path)</span><br><span class="line">     unexpected end of file</span><br><span class="line">       at Object._prettifyError (/Users/CWJ/Documents/Blog/blog_chenwenjia1991/node_modules/nunjucks/src/lib.js:36:11)</span><br><span class="line">   ...</span><br></pre></td></tr></table></p>
+<h4 id="Markdown-写作注意事项"><a href="#Markdown-写作注意事项" class="headerlink" title="Markdown 写作注意事项"></a>Markdown 写作注意事项</h4><p>此处主要收集记录一些博客撰写过程中，应该注意的事项，可能会不断扩展，错误主要表现为静态网页无法产生。</p>
+<ol>
+<li><p>行内代码引用时尽量使用三个反引号而不是一个反引号，因为代码中出现百分号或其他转义符时容易引发 Hexo 生成静态网页的错误，如下所示</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span> 使用一个反引号后转义失败 &#123;%code format error!%&#125; 引发如下错误</span><br><span class="line">INFO  Start processing</span><br><span class="line">FATAL Something's wrong. Maybe you can find the solution here: http://hexo.io/docs/troubleshooting.html</span><br><span class="line">Template render error: (unknown path)</span><br><span class="line">  unexpected end of file</span><br><span class="line">    at Object._prettifyError (/Users/CWJ/Documents/Blog/blog_chenwenjia1991/node_modules/nunjucks/src/lib.js:36:11)</span><br><span class="line">...</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
 <h2 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h2><p>花费了一周多时间终于完成了本篇博客的撰写。一直在努力避免将一篇博客写的太细太长，不知不觉还是写了很长的篇幅，后续可能考虑拆分博客以为了更好的阅读体验，比如将 Hexo 相关部分独立。</p>
 <p>感谢乐于分享的朋友，本文的很多工作也是在参考他们的博客下完成的；感谢读至此的朋友，完成这篇博客的阅读也花费了您不少的时间与耐心。</p>
 <p>愿你我共同前行~</p>
