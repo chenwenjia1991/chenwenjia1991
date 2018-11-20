@@ -158,7 +158,7 @@
 <meta property="og:site_name" content="码农驿站">
 <meta property="og:description" content="最近在做 Python 内存优化时，发现 multiprocessing 可以充分利用 CPU 的多核特性，且可以在执行完任务后释放所有的资源，只保留需要的结果即可，可以避免 Python 的垃圾回收过慢的弊病，同时带来执行效率的提升。同时，之前的 Python 资料书籍更关注于 Python 多线程部分，而对多进程的讲解应用较少。于是开始阅读该部分文档和源码，本篇博客是其官网文档 multipr">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-11-20T12:19:39.715Z">
+<meta property="og:updated_time" content="2018-11-20T14:15:59.578Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Python3.5.6 multiprocessing 用户文档">
 <meta name="twitter:description" content="最近在做 Python 内存优化时，发现 multiprocessing 可以充分利用 CPU 的多核特性，且可以在执行完任务后释放所有的资源，只保留需要的结果即可，可以避免 Python 的垃圾回收过慢的弊病，同时带来执行效率的提升。同时，之前的 Python 资料书籍更关注于 Python 多线程部分，而对多进程的讲解应用较少。于是开始阅读该部分文档和源码，本篇博客是其官网文档 multipr">
@@ -433,7 +433,7 @@
                 
                   <span class="post-meta-item-text">Edited on</span>
                 
-                <time title="Modified: 2018-11-20 20:19:39" itemprop="dateModified" datetime="2018-11-20T20:19:39+08:00">2018-11-20</time>
+                <time title="Modified: 2018-11-20 22:15:59" itemprop="dateModified" datetime="2018-11-20T22:15:59+08:00">2018-11-20</time>
               
             
           </span>
@@ -726,19 +726,19 @@
 </blockquote>
 <blockquote>
 <p>消除僵尸进程的方法：</p>
-<ol>
+<ul>
 <li>创建两次子进程</li>
-</ol>
+</ul>
 <p>即将父进程创建子进程的方式改为父进程先创建子进程代理进程，由代理进程创建子进程执行任务。代理进程在完成子进程的创建任务后，调用代理进程的 <code>join()</code> 方法消除（因为代理进程的执行时间很短）；同时，执行任务的子进程变成了孤儿进程，无论执行多久，最终被 init 进程（即进程号为 1 的进程）所收养，由 init 进程对其完成状态收集工作，避免了僵尸进程的产生。</p>
-<ol start="2">
+<ul>
 <li>利用系统信号清除僵尸进程</li>
-</ol>
+</ul>
 <p>基于 Linux 信号方式添加代码 <code>signal.signal(signal.SIGCHLD, signal.SIG_IGN)</code>。<code>signal.signal()</code> 函数定义在收到信号时执行自定义的处理程序。此处是指忽略创建的子进程的退出信号，</p>
 <p><code>signal.SIGCHLD</code> 在子进程状态改变后会产生此信号。</p>
 <p><code>sinal.SIG_IGN</code> 是标准信号处理程序，简单忽略给定信号；默认使用 <code>sinal.SIG_DFL</code>，代表不理会给定信号，但也不丢弃。修改后不保存子进程的状态使之成为孤儿进程被 init 进程回收。</p>
-<ol start="3">
+<ul>
 <li>此外，父进程退出时创建的僵尸进程也会被清除。</li>
-</ol>
+</ul>
 </blockquote>
 <ol start="5">
 <li>继承比使用 <code>pickle/unpickle</code> 更好</li>
