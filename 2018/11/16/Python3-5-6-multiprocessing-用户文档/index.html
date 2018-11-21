@@ -158,7 +158,7 @@
 <meta property="og:site_name" content="码农驿站">
 <meta property="og:description" content="最近在做 Python 内存优化时，发现 multiprocessing 可以充分利用 CPU 的多核特性，且可以在执行完任务后释放所有的资源，只保留需要的结果即可，可以避免 Python 的垃圾回收过慢的弊病，同时带来执行效率的提升。同时，之前的 Python 资料书籍更关注于 Python 多线程部分，而对多进程的讲解应用较少。于是开始阅读该部分文档和源码，本篇博客是其官网文档 multipr">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-11-21T10:39:36.346Z">
+<meta property="og:updated_time" content="2018-11-21T12:35:42.713Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Python3.5.6 multiprocessing 用户文档">
 <meta name="twitter:description" content="最近在做 Python 内存优化时，发现 multiprocessing 可以充分利用 CPU 的多核特性，且可以在执行完任务后释放所有的资源，只保留需要的结果即可，可以避免 Python 的垃圾回收过慢的弊病，同时带来执行效率的提升。同时，之前的 Python 资料书籍更关注于 Python 多线程部分，而对多进程的讲解应用较少。于是开始阅读该部分文档和源码，本篇博客是其官网文档 multipr">
@@ -433,7 +433,7 @@
                 
                   <span class="post-meta-item-text">Edited on</span>
                 
-                <time title="Modified: 2018-11-21 18:39:36" itemprop="dateModified" datetime="2018-11-21T18:39:36+08:00">2018-11-21</time>
+                <time title="Modified: 2018-11-21 20:35:42" itemprop="dateModified" datetime="2018-11-21T20:35:42+08:00">2018-11-21</time>
               
             
           </span>
@@ -579,19 +579,22 @@
 </blockquote>
 <h3 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h3><p><code>multiprocessing</code> 模块主要复制了 <code>threading</code> 模块的 API。</p>
 <h4 id="Process-amp-amp-Exceptions"><a href="#Process-amp-amp-Exceptions" class="headerlink" title="Process &amp;&amp; Exceptions"></a>Process &amp;&amp; Exceptions</h4><p>multiprocessing.<strong>Process</strong>(group=None, target=None, name=None, args=(), kwargs={}, *, daemon=None)</p>
-<p><code>Process</code> 对象表示另一个进程中的活动。<code>Process</code> 类具有 <code>threading.Thread</code> 的所有方法的等价方法。</p>
-<p>应该始终使用关键字参数调用构造函数。参数 <code>group</code> 应该始终是 <code>None</code>，它仅为了与 <code>threading.Thread</code> 构造参数一致。参数 <code>target</code> 是 <code>run()</code> 方法的调用函数，默认为 <code>None</code>，即不调用任何内容。参数 <code>name</code> 是进程的名字，详细情况见下参数部分。<code>kwargs</code> 是目标函数调用的参数关键字字典，若提供了该参数，将关键字参数 <code>daemon</code> 设置为 <code>True/False</code>，若为默认值 <code>None</code>，则从创建该进程的进程继承该参数。</p>
-<p>默认情况下，不会将任何参数传递给 <code>target</code>。</p>
+<blockquote>
+<p> <code>Process</code> 对象表示另一个进程中的活动。<code>Process</code> 类具有 <code>threading.Thread</code> 的所有方法的等价方法。</p>
+<p> 应该始终使用关键字参数调用构造函数。参数 <code>group</code> 应该始终是 <code>None</code>，它仅为了与 <code>threading.Thread</code> 构造参数一致。参数 <code>target</code> 是 <code>run()</code> 方法的调用函数，默认为 <code>None</code>，即不调用任何内容。参数 <code>name</code> 是进程的名字，详细情况见下参数部分。<code>kwargs</code> 是目标函数调用的参数关键字字典，若提供了该参数，将关键字参数 <code>daemon</code> 设置为 <code>True/False</code>，若为默认值 <code>None</code>，则从创建该进程的进程继承该参数。</p>
+<p> 默认情况下，不会将任何参数传递给 <code>target</code>。</p>
 <p>如果子类重写构造函数，必须确保在对进程执行任何动作之前先调用 <code>Process.__init__()</code> 方法。</p>
 <p>3.3版本后添加了 <code>daemon</code> 参数。</p>
 <p>构造函数源码如下所示。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># cpython 3.5.2 /Lib/multiprocessing/process BaseProcess 类</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, group=None, target=None, name=None, args=<span class="params">()</span>, kwargs=&#123;&#125;,</span></span></span><br><span class="line"><span class="function"><span class="params">             *, daemon=None)</span>:</span></span><br><span class="line">    <span class="keyword">assert</span> group <span class="keyword">is</span> <span class="keyword">None</span>, <span class="string">'group argument must be None for now'</span></span><br><span class="line">    count = next(_process_counter)</span><br><span class="line">    self._identity = _current_process._identity + (count,)</span><br><span class="line">    self._config = _current_process._config.copy()</span><br><span class="line">    self._parent_pid = os.getpid()</span><br><span class="line">    self._popen = <span class="keyword">None</span></span><br><span class="line">    self._target = target</span><br><span class="line">    self._args = tuple(args)</span><br><span class="line">    self._kwargs = dict(kwargs)</span><br><span class="line">    self._name = name <span class="keyword">or</span> type(self).__name__ + <span class="string">'-'</span> + \</span><br><span class="line">    			 <span class="string">':'</span>.join(str(i) <span class="keyword">for</span> i <span class="keyword">in</span> self._identity)</span><br><span class="line">    <span class="keyword">if</span> daemon <span class="keyword">is</span> <span class="keyword">not</span> <span class="keyword">None</span>:</span><br><span class="line">        self.daemon = daemon</span><br><span class="line">    _dangling.add(self)</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">&gt; <span class="comment"># cpython 3.5.2 /Lib/multiprocessing/process BaseProcess 类</span></span><br><span class="line">&gt; <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, group=None, target=None, name=None, args=<span class="params">()</span>, kwargs=&#123;&#125;,</span></span></span><br><span class="line"><span class="function"><span class="params">&gt;              *, daemon=None)</span>:</span></span><br><span class="line">&gt;     <span class="keyword">assert</span> group <span class="keyword">is</span> <span class="keyword">None</span>, <span class="string">'group argument must be None for now'</span></span><br><span class="line">&gt;     count = next(_process_counter)</span><br><span class="line">&gt;     self._identity = _current_process._identity + (count,)</span><br><span class="line">&gt;     self._config = _current_process._config.copy()</span><br><span class="line">&gt;     self._parent_pid = os.getpid()</span><br><span class="line">&gt;     self._popen = <span class="keyword">None</span></span><br><span class="line">&gt;     self._target = target</span><br><span class="line">&gt;     self._args = tuple(args)</span><br><span class="line">&gt;     self._kwargs = dict(kwargs)</span><br><span class="line">&gt;     self._name = name <span class="keyword">or</span> type(self).__name__ + <span class="string">'-'</span> + \</span><br><span class="line">&gt;     			 <span class="string">':'</span>.join(str(i) <span class="keyword">for</span> i <span class="keyword">in</span> self._identity)</span><br><span class="line">&gt;     <span class="keyword">if</span> daemon <span class="keyword">is</span> <span class="keyword">not</span> <span class="keyword">None</span>:</span><br><span class="line">&gt;         self.daemon = daemon</span><br><span class="line">&gt;     _dangling.add(self)</span><br><span class="line">&gt;</span><br></pre></td></tr></table></figure>
+</blockquote>
+<blockquote>
 <p><strong>run()</strong></p>
 <blockquote>
 <p>表示进程动作（即进程的执行任务）的方法。</p>
 <p>可以在子类中重写该方法。标准 <code>run()</code> 方法会调用构造函数参数 <code>target</code> 传递进来的目标函数（如果有），分别按顺序使用 <code>args</code> 和 <code>kwargs</code> 参数中的关键字参数。</p>
 </blockquote>
-<p><strong>start()</strong></p>
+<p> <strong>start()</strong></p>
 <blockquote>
 <p>进程启动的方法。</p>
 <p>该方法在每一个进程中至多被调用一次，其在一个单独进程中调用 <code>Process</code> 对象的 <code>run()</code> 方法。</p>
@@ -615,12 +618,13 @@
 <p><strong>daemon</strong></p>
 <blockquote>
 <p>进程后台运行标志，Boolean 类型。必须在调用 <code>start()</code> 方法之前设置 - 这样可以后台运行进程。</p>
-<p>初始值继承自父进程（即创建进程）。</p>
-<p>当进程退出时，它会尝试其终止其进程的所有子进程。</p>
+<p>初始值继承自父进程（即创建进程）。当进程退出时，它会尝试其终止其进程的所有子进程。</p>
 <p>注：后台运行的进程不允许创建子进程，否则子进程会变成孤儿进程。此外，后台进程不能是 Unix 守护进程或服务，当非守护进程退出时，它们可以正常退出。</p>
 </blockquote>
+</blockquote>
 <p>除了 <code>threading.Thread</code> API 之外，<code>Process</code> 还支持如下属性或方法</p>
-<p><strong>pid</strong></p>
+<blockquote>
+<p> <strong>pid</strong></p>
 <blockquote>
 <p>返回进程 ID，进程生成之前返回 <code>None</code>。</p>
 </blockquote>
@@ -646,6 +650,7 @@
 <p>终止进程。Unix 环境下使用 <code>SIGTERM</code> 信号量完成；Windows 环境下调用 <code>TerminatedProcess()</code> 方法实现。但不会执行退出句柄和剩余子句。</p>
 <p>注：进程的后裔进程不会被终止，后裔进程将称为孤儿进程。</p>
 <p>警告：如果相互关联的进程正在使用管道或队列时，调用了该方法，管道或队列可能会被损毁且无法被其他进程使用。类似的，如果进程已获得了锁或者信号量，终止它可能导致其他进程的死锁。</p>
+</blockquote>
 </blockquote>
 <p>注：<code>start()</code>，<code>join()</code>，<code>is_alive()</code>，<code>terminate()</code> 和 <code>exitcode</code> 这些方法应该仅由父进程对象调用。</p>
 <p>如下是一个 <code>Process</code> 方法的使用实例。</p>
@@ -688,13 +693,23 @@
 </ol>
 </blockquote>
 <blockquote>
-<p>警告：</p>
+<p>警告：如果一个进程正在使用一个队列的时候通过使用 <code>Process.terminate()</code> 或 <code>os.kill()</code> 终止了进程，队列中的数据很可能被损毁。这可能导致任何尝试使用该队列中数据的进程抛出异常。</p>
 </blockquote>
 <blockquote>
-<p>警告：</p>
+<p>警告：如上所述，子进程向队列中放入信息（且没有使用 <code>JoinableQueue.cancel_join_thread</code> 方法），进程在将数据缓冲到管道之前不会终止。</p>
+<p>这意味着如果调用进程的 <code>join()</code> 方法在队列中仍有数据时可能造成死锁。类似地，若子进程是非后台进程，当父进程尝试调用 <code>join()</code> 方法等待它的非后台子进程终止时，父进程可能在退出时挂起。</p>
+<p>通过使用 <code>manager</code> 创建的队列不会存在该问题。参与 <a href="#3">Programming guidelines</a>。</p>
 </blockquote>
 <p>有关使用队列在进程间通信的代码实例，可以查看 <a href="#4.3">Examples 部分</a>。</p>
-<p>On the way!</p>
+<p>multiprocessing.<strong>Pipe</strong>([duplex])</p>
+<blockquote>
+<p>返回一对代表 <code>connection</code> 对象通道两端的变量 <code>(conn1, conn2)</code>。</p>
+<p>若参数 <em>dumplex</em> 为 <code>True</code> 通道是双工的（默认为 <code>True</code>），若该参数为 <code>False</code> 则通道是单向的，<code>conn1</code> 只能用来接收消息，<code>conn2</code> 只能用来发送消息。</p>
+</blockquote>
+<p>multiprocessing.<strong>Queue</strong>([maxsize])</p>
+<blockquote>
+<p>返回</p>
+</blockquote>
 <h4 id="Miscellaneous"><a href="#Miscellaneous" class="headerlink" title="Miscellaneous"></a>Miscellaneous</h4><p>On the way!</p>
 <h4 id="Connection-Objects"><a href="#Connection-Objects" class="headerlink" title="Connection Objects"></a>Connection Objects</h4><p>On the way!</p>
 <h4 id="Synchronization-primitives"><a href="#Synchronization-primitives" class="headerlink" title="Synchronization primitives"></a>Synchronization primitives</h4><p>On the way!</p>
@@ -711,7 +726,6 @@
 <p>创建后应该调用 <code>start()</code> 或 <code>get_server().serve_forever()</code> 方法保证 <code>manager</code> 对象引用的进程开启。</p>
 <p><em>address</em> 是 <code>manager</code> 进程监听的新连接的地址，若该参数为 <code>None</code> 则系统随机分配一个对应于某些空闲端口号的地址。</p>
 <p><em>authkey</em> 身份认证密钥，用于检查连接到服务进程的有效性。若该参数为 <code>None</code> 则使用 <code>current_process().authkey</code>。若使用该参数，其类型是 byte 字符串类型。</p>
-</blockquote>
 <p><strong>start</strong>([initializer[, initargs]])</p>
 <blockquote>
 <p><code>manager</code> 开启子进程。若构造函数不为空，启动时调用构造函数 <code>initializer(*initargs)</code>。</p>
@@ -719,16 +733,20 @@
 <p><strong>get_server</strong>()</p>
 <blockquote>
 <p>返回 <code>manager</code> 对象控制下的真实服务器 <code>Server</code>，该类型支持 <code>serve_forever()</code> 方法。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&gt; <span class="keyword">from</span> multiprocessing.managers <span class="keyword">import</span> BaseManager</span><br><span class="line">&gt; manager = BaseManager(address=(<span class="string">''</span>, <span class="number">50000</span>), authkey=<span class="string">b'abc'</span>)</span><br><span class="line">&gt; server = manager.get_server()</span><br><span class="line">&gt; server.serve_forever()</span><br><span class="line">&gt;</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&gt; &gt; <span class="keyword">from</span> multiprocessing.managers <span class="keyword">import</span> BaseManager</span><br><span class="line">&gt; &gt; manager = BaseManager(address=(<span class="string">''</span>, <span class="number">50000</span>), authkey=<span class="string">b'abc'</span>)</span><br><span class="line">&gt; &gt; server = manager.get_server()</span><br><span class="line">&gt; &gt; server.serve_forever()</span><br><span class="line">&gt; &gt;</span><br></pre></td></tr></table></figure>
 </blockquote>
+</blockquote>
+<blockquote>
 <blockquote>
 <p><code>Server</code> 类型具有 <code>address</code> 属性，由 <code>manager</code> 对象使用的地址。</p>
 </blockquote>
 <p><strong>Connect</strong>()</p>
 <blockquote>
 <p>连接一个本地的 <code>manager</code> 对象到远程 <code>manager</code> 进程。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&gt; <span class="keyword">from</span> multiprocessing.managers <span class="keyword">import</span> BaseManager</span><br><span class="line">&gt; m = BaseManager(address=(<span class="string">'127.0.0.1'</span>, <span class="number">5000</span>), authkey=<span class="string">b'abc'</span>)</span><br><span class="line">&gt; m.connect()</span><br><span class="line">&gt;</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&gt; &gt; <span class="keyword">from</span> multiprocessing.managers <span class="keyword">import</span> BaseManager</span><br><span class="line">&gt; &gt; m = BaseManager(address=(<span class="string">'127.0.0.1'</span>, <span class="number">5000</span>), authkey=<span class="string">b'abc'</span>)</span><br><span class="line">&gt; &gt; m.connect()</span><br><span class="line">&gt; &gt;</span><br></pre></td></tr></table></figure>
 </blockquote>
+</blockquote>
+<blockquote>
 <p><strong>shutdown</strong>()</p>
 <blockquote>
 <p>终止 <code>manager</code> 进程。该方法只有在服务进程执行过 <code>start()</code> 方法后才有效。</p>
@@ -750,11 +768,11 @@
 <p>由 <code>manager</code> 使用的地址。</p>
 </blockquote>
 <p>版本 3.3 后的变化：<code>manager</code> 对象支持上下文管理协议。</p>
+</blockquote>
 <p>multiprocessing.managers.<strong>SyncManager</strong> </p>
 <blockquote>
 <p><code>BaseManager</code> 的子类，用于进程间同步。<code>multiprocessing.Manager()</code> 返回的对象类型。</p>
 <p>同样支持创建共享 List 和 Dict。</p>
-</blockquote>
 <p><strong>Barrier</strong>(parties[, action[, timeout]])</p>
 <blockquote>
 <p>创建共享 <code>threading.Barrier</code> 对象并返回其代理。3.3 版本后引入。</p>
@@ -767,8 +785,8 @@
 <blockquote>
 <p>创建共享 <code>threading.Condition</code> 对象并返回其代理。</p>
 <p>若创建的共享对象类型包含 <code>lock</code>则返回值是 <code>threading.Lock</code> 或 <code>threading.RLock</code> 对象。</p>
-<p>3.3 版本后添加了 <code>wait_for()</code> 方法。</p>
 </blockquote>
+<p>3.3 版本后添加了 <code>wait_for()</code> 方法。</p>
 <p><strong>Event</strong>()</p>
 <blockquote>
 <p>创建共享 <code>threading.Event</code> 对象并返回其代理。</p>
@@ -811,14 +829,17 @@
 </blockquote>
 <blockquote>
 <p>注：对 dict 或 list 的代理中可变值或可变项的修改可能不会通过 <code>manager</code> 传播，因为代理无法知道其值或项在何时被修改的。因此，要修改此类值或项，需要将修改后的对象重新赋值给 <code>manager</code> 包含的代理。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">&gt; <span class="comment"># create a list proxy and append a mutable object (a dictionary)</span></span><br><span class="line">&gt; lproxy = manager.list()</span><br><span class="line">&gt; lproxy.append(&#123;&#125;)</span><br><span class="line">&gt; <span class="comment"># now mutate the dictionary</span></span><br><span class="line">&gt; d = lproxy[<span class="number">0</span>]</span><br><span class="line">&gt; d[<span class="string">'a'</span>] = <span class="number">1</span></span><br><span class="line">&gt; d[<span class="string">'b'</span>] = <span class="number">2</span></span><br><span class="line">&gt; <span class="comment"># at this point, the changes to d are not yet synced, but by</span></span><br><span class="line">&gt; <span class="comment"># reassigning the dictionary, the proxy is notified of the change</span></span><br><span class="line">&gt; lproxy[<span class="number">0</span>] = d</span><br><span class="line">&gt;</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">&gt; &gt; <span class="comment"># create a list proxy and append a mutable object (a dictionary)</span></span><br><span class="line">&gt; &gt; lproxy = manager.list()</span><br><span class="line">&gt; &gt; lproxy.append(&#123;&#125;)</span><br><span class="line">&gt; &gt; <span class="comment"># now mutate the dictionary</span></span><br><span class="line">&gt; &gt; d = lproxy[<span class="number">0</span>]</span><br><span class="line">&gt; &gt; d[<span class="string">'a'</span>] = <span class="number">1</span></span><br><span class="line">&gt; &gt; d[<span class="string">'b'</span>] = <span class="number">2</span></span><br><span class="line">&gt; &gt; <span class="comment"># at this point, the changes to d are not yet synced, but by</span></span><br><span class="line">&gt; &gt; <span class="comment"># reassigning the dictionary, the proxy is notified of the change</span></span><br><span class="line">&gt; &gt; lproxy[<span class="number">0</span>] = d</span><br><span class="line">&gt; &gt;</span><br></pre></td></tr></table></figure>
 </blockquote>
+</blockquote>
+<blockquote>
 <p>multiprocessing.managers.<strong>Namespace</strong></p>
 <blockquote>
 <p>可以注册 <code>SyncManager</code> 的类型。</p>
 <p>一个 <code>Namespace</code> 对象没有公开方法，但有可写属性，其代表它属性的值。</p>
 <p>然后，当使用 <code>Namespace</code> 对象的代理时，其以 ‘_’ 开头名字的属性是代理的属性而不是引用对象的属性。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&gt; manager = multiprocessing.Manager()</span><br><span class="line">&gt; Global = manager.Namespace()</span><br><span class="line">&gt; Global.x = <span class="number">10</span></span><br><span class="line">&gt; Global.y = <span class="string">'hello'</span></span><br><span class="line">&gt; Global._z = <span class="number">12.3</span>    <span class="comment"># this is an attribute of the proxy</span></span><br><span class="line">&gt; &gt;&gt;&gt; print(Global)</span><br><span class="line">&gt; Namespace(x=<span class="number">10</span>, y=<span class="string">'hello'</span>)</span><br><span class="line">&gt;</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&gt; &gt; manager = multiprocessing.Manager()</span><br><span class="line">&gt; &gt; Global = manager.Namespace()</span><br><span class="line">&gt; &gt; Global.x = <span class="number">10</span></span><br><span class="line">&gt; &gt; Global.y = <span class="string">'hello'</span></span><br><span class="line">&gt; &gt; Global._z = <span class="number">12.3</span>    <span class="comment"># this is an attribute of the proxy</span></span><br><span class="line">&gt; &gt; &gt;&gt;&gt; print(Global)</span><br><span class="line">&gt; &gt; Namespace(x=<span class="number">10</span>, y=<span class="string">'hello'</span>)</span><br><span class="line">&gt; &gt;</span><br></pre></td></tr></table></figure>
+</blockquote>
 </blockquote>
 <h5 id="定制-manager"><a href="#定制-manager" class="headerlink" title="定制 manager"></a>定制 manager</h5><p>可以通过创建 <code>BaseManager</code> 的子类创建自己的定制化 <code>manager</code>，使用 <code>register()</code> 类方法注册新类型或调用该类。实例如下</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> multiprocessing.managers <span class="keyword">import</span> BaseManager</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MathsClass</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">add</span><span class="params">(self, x, y)</span>:</span></span><br><span class="line">        <span class="keyword">return</span> x + y</span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">mul</span><span class="params">(self, x, y)</span>:</span></span><br><span class="line">        <span class="keyword">return</span> x * y</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MyManager</span><span class="params">(BaseManager)</span>:</span></span><br><span class="line">    <span class="keyword">pass</span></span><br><span class="line"></span><br><span class="line">MyManager.register(<span class="string">'Maths'</span>, MathsClass)</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:</span><br><span class="line">    <span class="keyword">with</span> MyManager() <span class="keyword">as</span> manager:</span><br><span class="line">        maths = manager.Maths()</span><br><span class="line">        print(maths.add(<span class="number">4</span>, <span class="number">3</span>))         <span class="comment"># prints 7</span></span><br><span class="line">        print(maths.mul(<span class="number">7</span>, <span class="number">8</span>))         <span class="comment"># prints 56</span></span><br></pre></td></tr></table></figure>
@@ -850,7 +871,7 @@
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> multiprocessing, logging</span><br><span class="line">logger = multiprocessing.log_to_stderr()</span><br><span class="line">logger.setLevel(logging.INFO)</span><br><span class="line">logger.warning(<span class="string">'doomed'</span>)</span><br><span class="line"><span class="comment"># [WARNING/MainProcess] doomed</span></span><br><span class="line">m = multiprocessing.Manager()</span><br><span class="line"><span class="comment"># [INFO/SyncManager-...] child process calling self.run()</span></span><br><span class="line"><span class="comment"># [INFO/SyncManager-...] created temp directory /.../pymp-...</span></span><br><span class="line"><span class="comment"># [INFO/SyncManager-...] manager serving at '/.../listener-...'</span></span><br><span class="line"><span class="keyword">del</span> m</span><br><span class="line"><span class="comment"># [INFO/MainProcess] sending shutdown message to manager</span></span><br><span class="line"><span class="comment"># [INFO/SyncManager-...] manager exiting with exitcode 0</span></span><br></pre></td></tr></table></figure>
 <p>有关日志记录级别的详细信息，请参阅 <a href="https://docs.python.org/3.5/library/logging.html#module-logging" target="_blank" rel="noopener">logging</a>。</p>
 <h4 id="multiprocessing-dummy"><a href="#multiprocessing-dummy" class="headerlink" title="multiprocessing.dummy"></a><strong>multiprocessing.dummy</strong></h4><p>该模块复制了 <code>multiprocessing</code> 的 API，仅仅是 <code>threading</code> 模块的修饰器。</p>
-<h3 id="Programming-Guidelines"><a href="#Programming-Guidelines" class="headerlink" title="Programming Guidelines"></a>Programming Guidelines</h3><p>如下是使用 <code>multiprocessing</code> 模块时的一些指导原则和习惯用法。</p>
+<h3 id="Programming-Guidelines"><a href="#Programming-Guidelines" class="headerlink" title="Programming Guidelines"></a><span id="3">Programming Guidelines</span></h3><p>如下是使用 <code>multiprocessing</code> 模块时的一些指导原则和习惯用法。</p>
 <h4 id="Start"><a href="#Start" class="headerlink" title="Start()"></a>Start()</h4><p>如下原则适用于所有的 <code>start()</code> 方法。</p>
 <ol>
 <li>避免内存共享</li>
