@@ -158,7 +158,7 @@
 <meta property="og:site_name" content="码农驿站">
 <meta property="og:description" content="最近在做 Python 内存优化时，发现 multiprocessing 可以充分利用 CPU 的多核特性，且可以在执行完任务后释放所有的资源，只保留需要的结果即可，可以避免 Python 的垃圾回收过慢的弊病，同时带来执行效率的提升。同时，之前的 Python 资料书籍更关注于 Python 多线程部分，而对多进程的讲解应用较少。于是开始阅读该部分文档和源码，本篇博客是其官网文档 multipr">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-11-21T10:20:11.377Z">
+<meta property="og:updated_time" content="2018-11-21T10:39:36.346Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Python3.5.6 multiprocessing 用户文档">
 <meta name="twitter:description" content="最近在做 Python 内存优化时，发现 multiprocessing 可以充分利用 CPU 的多核特性，且可以在执行完任务后释放所有的资源，只保留需要的结果即可，可以避免 Python 的垃圾回收过慢的弊病，同时带来执行效率的提升。同时，之前的 Python 资料书籍更关注于 Python 多线程部分，而对多进程的讲解应用较少。于是开始阅读该部分文档和源码，本篇博客是其官网文档 multipr">
@@ -433,7 +433,7 @@
                 
                   <span class="post-meta-item-text">Edited on</span>
                 
-                <time title="Modified: 2018-11-21 18:20:11" itemprop="dateModified" datetime="2018-11-21T18:20:11+08:00">2018-11-21</time>
+                <time title="Modified: 2018-11-21 18:39:36" itemprop="dateModified" datetime="2018-11-21T18:39:36+08:00">2018-11-21</time>
               
             
           </span>
@@ -835,8 +835,21 @@
 <h4 id="Process-Pool"><a href="#Process-Pool" class="headerlink" title="Process Pool"></a>Process Pool</h4><p>On the way!</p>
 <h4 id="Listener-amp-amp-Client"><a href="#Listener-amp-amp-Client" class="headerlink" title="Listener &amp;&amp; Client"></a>Listener &amp;&amp; Client</h4><p>On the way!</p>
 <h4 id="Authentication-keys"><a href="#Authentication-keys" class="headerlink" title="Authentication keys"></a>Authentication keys</h4><p>On the way!</p>
-<h4 id="Logging"><a href="#Logging" class="headerlink" title="Logging"></a>Logging</h4><p>On the way!</p>
-<h4 id="multiprocessing-dummy"><a href="#multiprocessing-dummy" class="headerlink" title="multiprocessing.dummy"></a><strong>multiprocessing.dummy</strong></h4><p>On the way!</p>
+<h4 id="Logging"><a href="#Logging" class="headerlink" title="Logging"></a>Logging</h4><p>提供了部分日志支持。但要注意，<code>logging</code> 模块不使用进程共享锁，所以来自不同进程的信息可能混淆（取决于处理程序类型）。</p>
+<p>multiprocessing.<strong>get_logger</strong>()</p>
+<blockquote>
+<p>返回一个 <code>multiprocessing</code> 模块使用的日志记录器。若有必要，将会新建一个。</p>
+<p>首次创建的日志记录器日志级别为 <code>logging.NOTSET</code> 且没有默认处理程序。日志信息默认不会传递到根日志记录器。</p>
+<p>注：Windows 环境下子进程只会继承父进程的日志级别而不会继承任何其他定义。</p>
+</blockquote>
+<p>multiprocessing.<strong>log_to_stderr</strong>()</p>
+<blockquote>
+<p>该方法返回一个添加了日志处理程序的 <code>get_logger()</code> 方法调用，该日志处理程序使用 <code>&quot;[%(levelname)s/%(processName)s] %(message)s&quot;</code> 格式将消息发送到 <code>sys.stderr</code>。</p>
+</blockquote>
+<p>下面是打开日志记录的一个代码实例。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> multiprocessing, logging</span><br><span class="line">logger = multiprocessing.log_to_stderr()</span><br><span class="line">logger.setLevel(logging.INFO)</span><br><span class="line">logger.warning(<span class="string">'doomed'</span>)</span><br><span class="line"><span class="comment"># [WARNING/MainProcess] doomed</span></span><br><span class="line">m = multiprocessing.Manager()</span><br><span class="line"><span class="comment"># [INFO/SyncManager-...] child process calling self.run()</span></span><br><span class="line"><span class="comment"># [INFO/SyncManager-...] created temp directory /.../pymp-...</span></span><br><span class="line"><span class="comment"># [INFO/SyncManager-...] manager serving at '/.../listener-...'</span></span><br><span class="line"><span class="keyword">del</span> m</span><br><span class="line"><span class="comment"># [INFO/MainProcess] sending shutdown message to manager</span></span><br><span class="line"><span class="comment"># [INFO/SyncManager-...] manager exiting with exitcode 0</span></span><br></pre></td></tr></table></figure>
+<p>有关日志记录级别的详细信息，请参阅 <a href="https://docs.python.org/3.5/library/logging.html#module-logging" target="_blank" rel="noopener">logging</a>。</p>
+<h4 id="multiprocessing-dummy"><a href="#multiprocessing-dummy" class="headerlink" title="multiprocessing.dummy"></a><strong>multiprocessing.dummy</strong></h4><p>该模块复制了 <code>multiprocessing</code> 的 API，仅仅是 <code>threading</code> 模块的修饰器。</p>
 <h3 id="Programming-Guidelines"><a href="#Programming-Guidelines" class="headerlink" title="Programming Guidelines"></a>Programming Guidelines</h3><p>如下是使用 <code>multiprocessing</code> 模块时的一些指导原则和习惯用法。</p>
 <h4 id="Start"><a href="#Start" class="headerlink" title="Start()"></a>Start()</h4><p>如下原则适用于所有的 <code>start()</code> 方法。</p>
 <ol>
