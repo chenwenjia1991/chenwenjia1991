@@ -160,7 +160,7 @@
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://blogimages-1252423296.cos.ap-beijing.myqcloud.com/blog_pictures/11%E6%9C%88/11-1-NexT_Default.png">
 <meta property="og:image" content="https://blogimages-1252423296.cos.ap-beijing.myqcloud.com/blog_pictures/11%E6%9C%88/11-3-markdown-quote-error-view.png">
-<meta property="og:updated_time" content="2018-11-23T07:58:07.222Z">
+<meta property="og:updated_time" content="2018-11-24T06:12:40.101Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="GitHub Pages + Hexo 搭建博客">
 <meta name="twitter:description" content="在决定写博客之后，我们首要面临的问题就是如何完成个人博客的初始化工作。此处，个人选择了 GitHub Pages + Hexo 的博客搭建方案。对博客方案选择过程有兴趣的或者有自身明确需求的读客可以阅读 博客的需求 和 博客搭建的选择 两部分以决定是否阅读本博客的方案，若决定使用与本博客同样的解决方案，可以直接阅读本博客的方案。">
@@ -436,7 +436,7 @@
                 
                   <span class="post-meta-item-text">Edited on</span>
                 
-                <time title="Modified: 2018-11-23 15:58:07" itemprop="dateModified" datetime="2018-11-23T15:58:07+08:00">2018-11-23</time>
+                <time title="Modified: 2018-11-24 14:12:40" itemprop="dateModified" datetime="2018-11-24T14:12:40+08:00">2018-11-24</time>
               
             
           </span>
@@ -709,11 +709,9 @@
 <figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"># 1. 定义 ID</span><br><span class="line"><span class="tag">&lt;<span class="name">span</span> <span class="attr">id</span>=<span class="string">"jump"</span>&gt;</span>跳转去的地方<span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line"># 2. 使用 Markdown 语法</span><br><span class="line">[点击跳转](#jump)</span><br><span class="line">eg.. [跳转至博客的需求](#1)效果如下</span><br></pre></td></tr></table></figure>
 <p><a href="#1">跳转至博客的需求</a></p>
 </li>
-<li><p>Markdown 引用（quote）中添加代码异常，如下所示</p>
+<li><p>Markdown 引用（quote）中添加代码异常，如下所示<br><img src="https://blogimages-1252423296.cos.ap-beijing.myqcloud.com/blog_pictures/11%E6%9C%88/11-3-markdown-quote-error-view.png" width="80%"><br>会发现代码冲出现了引用符号，引用块中代码下方的引用块分离。Markdown渲染正常，在 Hexo 生成的页面中不一致，可通过如下方法解决(第二种方式更优雅方便)</p>
 </li>
 </ol>
-<p><img src="https://blogimages-1252423296.cos.ap-beijing.myqcloud.com/blog_pictures/11%E6%9C%88/11-3-markdown-quote-error-view.png" width="80%"></p>
-<p>会发现代码冲出现了引用符号，引用块中代码下方的引用块分离。Markdown渲染正常，在 Hexo 生成的页面中不一致，可通过如下方法解决(第二种方式更优雅方便)</p>
 <ul>
 <li>将代码块结尾的三个反引号与下一行文字之间的空行删除，用四个空格实现</li>
 <li>使用 Hexo 官网给定的另一种<a href="https://hexo.io/zh-cn/docs/tag-plugins.html#%E6%A0%B7%E4%BE%8B-1" target="_blank" rel="noopener">插入代码块的方式</a>，代码示例<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">&#123;% blockquote %&#125;</span><br><span class="line">上述代码在 Quote 中效果如下</span><br><span class="line">&#123;% codeblock lang:python %&#125;</span><br><span class="line"># test for code in quote</span><br><span class="line">print(&quot;Hello World!&quot;)</span><br><span class="line">&#123;% endcodeblock %&#125;</span><br><span class="line"></span><br><span class="line">注：Hexo quote 中引用代码块，注意其 Markdown 解析器的不一致。</span><br><span class="line">&#123;% endblockquote %&#125;</span><br></pre></td></tr></table></figure>
