@@ -158,7 +158,7 @@
 <meta property="og:site_name" content="码农驿站">
 <meta property="og:description" content="最近在做 Python 内存优化时，发现 multiprocessing 可以充分利用 CPU 的多核特性，且可以在执行完任务后释放所有的资源，只保留需要的结果即可，可以避免 Python 的垃圾回收过慢的弊病，同时带来执行效率的提升。同时，之前的 Python 资料书籍更关注于 Python 多线程部分，而对多进程的讲解应用较少。于是开始阅读该部分文档和源码，本篇博客是其官网文档 multipr">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-11-24T08:41:37.140Z">
+<meta property="og:updated_time" content="2018-11-24T09:25:29.066Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Python3.5.6 multiprocessing 用户文档">
 <meta name="twitter:description" content="最近在做 Python 内存优化时，发现 multiprocessing 可以充分利用 CPU 的多核特性，且可以在执行完任务后释放所有的资源，只保留需要的结果即可，可以避免 Python 的垃圾回收过慢的弊病，同时带来执行效率的提升。同时，之前的 Python 资料书籍更关注于 Python 多线程部分，而对多进程的讲解应用较少。于是开始阅读该部分文档和源码，本篇博客是其官网文档 multipr">
@@ -433,7 +433,7 @@
                 
                   <span class="post-meta-item-text">Edited on</span>
                 
-                <time title="Modified: 2018-11-24 16:41:37" itemprop="dateModified" datetime="2018-11-24T16:41:37+08:00">2018-11-24</time>
+                <time title="Modified: 2018-11-24 17:25:29" itemprop="dateModified" datetime="2018-11-24T17:25:29+08:00">2018-11-24</time>
               
             
           </span>
@@ -579,15 +579,23 @@
 <p><strong>qsize</strong>()<br>返回队列的近似大小。因为多线程/多进程影响，该数字是不可靠的。<br>注：该方法在像 MacOSX 这样未实现 <code>sem_getvalue()</code> 的 Unix 平台可能引发 <code>NotImplementedError</code> 异常。</p>
 <p><strong>empty</strong>()<br>如果队列为空返回 <code>True</code> 否则返回 <code>False</code>。由于多线程/多进程影响，返回值不可靠。</p>
 <p><strong>full</strong>()<br>如果队满返回 <code>True</code> 否则返回 <code>False</code>。由于多线程/多进程影响，返回值不可靠。</p>
-<p><strong>put</strong>(<em>obj</em>[, <em>block</em>[, <em>timeout</em>]])<br>将对象放入队列。</p>
+<p><strong>put</strong>(<em>obj</em>[, <em>block</em>[, <em>timeout</em>]])<br>将对象放入队列。<br>若可选参数 <code>block</code> 是 <code>True</code>（默认值）且 <code>timeout</code> 参数为 <code>None</code>（默认值），若没有空间插入对象会发生阻塞直到可以插入对象 。若 <code>timeout</code> 参数是一个正整数 N，其会至多阻塞 N 秒还没有空间可以插入时抛出 <code>queue.Full</code><br>异常。<br>若可选参数 <code>block</code> 是 <code>False</code> 会直接向队列中放入元素，若没有空间直接抛出 <code>queue.Full</code> 异常（该情况下 <code>timeout</code> 参数被忽略）。</p>
+<p><strong>put_nowait</strong>(<em>obj</em>)<br>等价于 <code>put(obj, False)</code> 方法。</p>
+<p><strong>get</strong>([<em>block</em>[, <em>timeout</em>]])<br>从队列中删除并返回一个数据对象。</p>
+<p><strong>get_nowait</strong>()<br>等价于 <code>get(False)</code> 方法。</p>
+<p><code>multiprocessing.Queue</code> 还有一些 <code>queue.Queue</code> 中没有的方法。这些方法在大多数情况下用不到。</p>
+<p><strong>close</strong>()<br>表示当前进程不会再将数据放入该队列。一旦后台线程将所有的数据缓冲到管道中，后台线程退出。当 <code>Queue</code> 实例被垃圾回收时自动调用该方法。</p>
+<p><strong>join_thread</strong>()<br><code>join</code> 后台线程。该方法只能在调用 <code>close()</code> 方法后使用，将阻塞至后台线程的退出以确保缓存的所有数据均缓冲到管道中。<br>默认情况下，非 <code>Queue</code> 创建者的进程退出时会调用该方法，可以通过调用 <code>cancel_join_thread()</code> 使该操作失效。</p>
+<p><strong>cancel_join_thread</strong>()<br>阻止 <code>join_thread()</code> 方法阻塞。特别的是，可以阻止后台线程在进程中退出时进程对线程的 <code>join</code> 操作 - 参考上面 <code>join_thread()</code> 方法。<br><code>allow_exit_without_flush()</code> 的名字更适合该方法，其可能会导致进入队列中的数据消失，因此基本不需要使用该方法。只有在当前进程需要立即退出，并不关心丢失的数据，不再等待后台线程将缓存数据缓冲到底层管道的情况下，使用该方法。</p>
+<div class="note info"><p>注：该类的方法依赖于主机操作系统支持共享信号量功能。若不支持，该类中的方法将被禁用，尝试实例化 <code>Queue</code> 将会导致 <code>ImportError</code> 异常。参阅 <a href="https://bugs.python.org/issue3770" target="_blank" rel="noopener">bpo-3770</a> 获取更详细的信息。对下面列出的其他特殊 <code>Queue</code> 类型具有同样的要求。</p></div></blockquote></p>
+<p>multiprocessing.<strong>SimpleQueue</strong><br><blockquote><p>类似于加锁 <code>Pipe</code> 类型的 <code>Queue</code> 简单实现。</p>
+<p><strong>empty</strong>()<br>若队列为空返回 <code>True</code> 否则返回 <code>False</code>。</p>
+<p><strong>get</strong>()<br>从队列中移除并返回数据对象。</p>
+<p><strong>put</strong>(<em>item</em>)<br>将数据对象放入队列。</p>
 </blockquote></p>
-<p>multiprocessing.<strong>SimpleQueue</strong><br><blockquote><p>On the way!</p>
-<p><strong>qsize</strong>()<br>On the way!</p>
-<p><strong>empty</strong>()<br>On the way!</p>
-</blockquote></p>
-<p>multiprocessing.<strong>JoinableQueue</strong>([<em>maxsize</em>])<br><blockquote><p>On the way!</p>
-<p><strong>qsize</strong>()<br>On the way!</p>
-<p><strong>empty</strong>()<br>On the way!</p>
+<p>multiprocessing.<strong>JoinableQueue</strong>([<em>maxsize</em>])<br><blockquote><p><code>Queue</code> 类型的子类，添加了 <code>task_done()</code> 和 <code>join()</code> 方法。</p>
+<p><strong>task_done</strong>()<br>表明之前排队过的任务已经完成。由队列的消费者使用。对于每个使用 <code>get()</code> 方法获取任务的消费者后续调用该方法告知队列任务完成。<br>若调用 <code>join()</code> 方法，会阻塞至队列中的所有任务均被完成（即调用 <code>put()</code> 方法放入队列中的每个任务都收到了 <code>task_done</code> 回调）。<br>若该方法的调用次数超过了队列中放置的任务数量，会引发 <code>ValueError</code> 异常。</p>
+<p><strong>join</strong>()<br>阻塞至放入到队列中的所有任务均被处理完成。<br>每当有新的任务加入到队列中，未完成的任务数量就会增加。每当消费者调用了 <code>task_done()</code> 告知队列任务完成，未完成的任务数量就会下降。当未完成任务数量的计数将至零时，该方法的阻塞不再阻塞。</p>
 </blockquote></p>
 <h4 id="Miscellaneous"><a href="#Miscellaneous" class="headerlink" title="Miscellaneous"></a>Miscellaneous</h4><p>On the way!</p>
 <h4 id="Connection-Objects"><a href="#Connection-Objects" class="headerlink" title="Connection Objects"></a>Connection Objects</h4><p>On the way!</p>
