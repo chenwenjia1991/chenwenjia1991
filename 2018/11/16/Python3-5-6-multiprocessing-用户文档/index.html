@@ -158,7 +158,7 @@
 <meta property="og:site_name" content="码农驿站">
 <meta property="og:description" content="最近在做 Python 内存优化时，发现 multiprocessing 可以充分利用 CPU 的多核特性，且可以在执行完任务后释放所有的资源，只保留需要的结果即可，可以避免 Python 的垃圾回收过慢的弊病，同时带来执行效率的提升。同时，之前的 Python 资料书籍更关注于 Python 多线程部分，而对多进程的讲解应用较少。于是开始阅读该部分文档和源码，本篇博客是其官网文档 multipr">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-11-26T02:24:13.987Z">
+<meta property="og:updated_time" content="2018-11-26T03:57:56.058Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Python3.5.6 multiprocessing 用户文档">
 <meta name="twitter:description" content="最近在做 Python 内存优化时，发现 multiprocessing 可以充分利用 CPU 的多核特性，且可以在执行完任务后释放所有的资源，只保留需要的结果即可，可以避免 Python 的垃圾回收过慢的弊病，同时带来执行效率的提升。同时，之前的 Python 资料书籍更关注于 Python 多线程部分，而对多进程的讲解应用较少。于是开始阅读该部分文档和源码，本篇博客是其官网文档 multipr">
@@ -433,7 +433,7 @@
                 
                   <span class="post-meta-item-text">Edited on</span>
                 
-                <time title="Modified: 2018-11-26 10:24:13" itemprop="dateModified" datetime="2018-11-26T10:24:13+08:00">2018-11-26</time>
+                <time title="Modified: 2018-11-26 11:57:56" itemprop="dateModified" datetime="2018-11-26T11:57:56+08:00">2018-11-26</time>
               
             
           </span>
@@ -638,10 +638,36 @@ multiprocessing.**set_start_method**(*method*)
 
 <div class="note info"><p>注：<code>multiprocessing</code> 不包含如下类似方法 <code>threading.active_count()</code>、<code>threading.enumerate()</code>、<code>threading.settrace()</code>、<code>threading.setprofile()</code>、<code>threading.Timer</code> 和 <code>threading.local</code>。</p></div></p>
 <h4 id="Connection-Objects"><a href="#Connection-Objects" class="headerlink" title="Connection Objects"></a>Connection Objects</h4><p><code>Connection</code> 对象可以发送和接收序列化的对象或字符串，它们可以被看做是面向消息的套接字。<br><code>Connection</code> 对象一般使用 <code>Pipe()</code> 方法创建 - 参阅 <a href="#2.10">Listeners &amp;&amp; Clients</a></p>
-<p><em>class</em> multiprocessing.<strong>Connection</strong><br><blockquote></blockquote></p>
-<h4 id="Synchronization-primitives"><a href="#Synchronization-primitives" class="headerlink" title="Synchronization primitives"></a>Synchronization primitives</h4><p>On the way!</p>
+<p><em>class</em> multiprocessing.<strong>Connection</strong><br><blockquote><p><strong>send</strong>(<em>obj</em>)<br>向连接的另一端发送一个对象，另一端应该使用 <code>recv()</code> 接收。<br>传输的对象一定可以被序列化。过大的序列化对象可能抛出 <code>ValueError</code> 异常（大约 32 MB+，取决于操作系统）。</p>
+<p><strong>recv</strong>()<br>On the way!</p>
+<p><strong>fileno</strong>()<br>On the way!</p>
+<p><strong>close</strong>()<br>On the way!</p>
+<p><strong>poll</strong>([<em>timeout</em>])<br>On the way!</p>
+<p><strong>send_bytes</strong>(<em>buffer</em>[, <em>offset</em>[, <em>size</em>])<br>On the way!</p>
+<p><strong>recv_bytes</strong>([<em>maxlength</em>])<br>On the way!</p>
+<p><strong>recv_bytes_into</strong>(<em>buffer</em>[, <em>offset</em>])<br>On the way!</p>
+<p>版本 3.3 后改动：<code>Connection</code> 对象可以在进程间使用 <code>Connection.send()</code> 和 <code>Connection.recv()</code> 传输。<br>版本 3.3 后添加：<code>Connection</code> 对象支持上下文管理协议。</p>
+</blockquote></p>
+<p>Python 交互界面中，示例如下<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> multiprocessing <span class="keyword">import</span> Pipe</span><br><span class="line">a, b = Pipe()</span><br><span class="line">a.send([<span class="number">1</span>, <span class="string">'hello'</span>, <span class="keyword">None</span>])</span><br><span class="line">b.recv()</span><br><span class="line"><span class="comment"># [1, 'hello', None]</span></span><br><span class="line">b.send_bytes(<span class="string">b'thank you'</span>)</span><br><span class="line">a.recv_bytes()</span><br><span class="line"><span class="comment"># b'thank you'</span></span><br><span class="line"><span class="keyword">import</span> array</span><br><span class="line">arr1 = array.array(<span class="string">'i'</span>, range(<span class="number">5</span>))</span><br><span class="line">arr2 = array.array(<span class="string">'i'</span>, [<span class="number">0</span>] * <span class="number">10</span>)</span><br><span class="line">a.send_bytes(arr1)</span><br><span class="line">count = b.recv_bytes_into(arr2)</span><br><span class="line"><span class="keyword">assert</span> count == len(arr1) * arr1.itemsize</span><br><span class="line">arr2</span><br><span class="line"><span class="comment"># array('i', [0, 1, 2, 3, 4, 0, 0, 0, 0, 0])</span></span><br></pre></td></tr></table></figure><br><div class="note warning"><p>警告：On the way!</p></div><br><div class="note warning"><p>警告：On the way!</p></div></p>
+<h4 id="Synchronization-primitives"><a href="#Synchronization-primitives" class="headerlink" title="Synchronization primitives"></a>Synchronization primitives</h4><p>通常，同步原语在多进程程序中不像多线程程序中那么必要。参阅 <a href="https://docs.python.org/3.5/library/threading.html#module-threading" target="_blank" rel="noopener"><code>threading</code></a> 模块文档。<br>可以通过是使用 <code>manager</code> 对象创建同步原语 - 参考 <a href="#2.7">Manager</a>。</p>
+<p><em>class</em> multiprocessing.<strong>Barrier</strong>(<em>parties</em>[, <em>action</em>[, <em>timeout</em>]])<br>On the way!</p>
+<p><em>class</em> multiprocessing.<strong>BoundedSemaphore</strong>([<em>value</em>])<br>On the way!</p>
+<p><em>class</em> multiprocessing.<strong>Condition</strong>([<em>lock</em>])<br>On the way!</p>
+<p><em>class</em> multiprocessing.<strong>Event</strong><br>On the way!</p>
+<p><em>class</em> multiprocessing.<strong>Lock</strong><br><blockquote><p>On the way!</p>
+<p><strong>acquire</strong>(<em>block=True, timeout=None</em>)<br>On the way!</p>
+<p><strong>release</strong>()<br>On the way!</p>
+</blockquote></p>
+<p><em>class</em> multiprocessing.RLock<br><blockquote><p>On the way!</p>
+<p><strong>acquire</strong>(<em>block=True, timeout=None</em>)<br>On the way!</p>
+<p><strong>release</strong>()<br>On the way!</p>
+</blockquote></p>
+<p><em>class</em> multiprocessing.Semaphore([<em>value</em>])</p>
+<div class="note info"><p>注：On the way!</p></div>
+<div class="note info"><p>注：On the way!</p></div>
+<div class="note info"><p>注：On the way!</p></div>
 <h4 id="Shared-ctypes-Objects"><a href="#Shared-ctypes-Objects" class="headerlink" title="Shared ctypes Objects"></a>Shared ctypes Objects</h4><p>On the way!</p>
-<h4 id="Manager"><a href="#Manager" class="headerlink" title="Manager"></a>Manager</h4><p><code>Manager</code> 提供了一种在不同进程间共享创建的数据的方式，包括在不同计算机运行的进程之间通过网络共享。<code>Manager</code> 对象管理一个共享对象的服务进程，其他进程通过使用代理获取共享对象。</p>
+<h4 id="Manager"><a href="#Manager" class="headerlink" title="Manager"></a><span id="2.7">Manager</span></h4><p><code>Manager</code> 提供了一种在不同进程间共享创建的数据的方式，包括在不同计算机运行的进程之间通过网络共享。<code>Manager</code> 对象管理一个共享对象的服务进程，其他进程通过使用代理获取共享对象。</p>
 <p>Multiprocessing.<strong>Manager()</strong><br><blockquote><p>返回一个 <code>SyncManager</code> 对象，可以用来在进程间共享对象。返回的 <code>manager</code> 对象对应一个生成的子进程，该子进程会创建共享对象并返回相应的代理方法。<br><code>manager</code> 进程一旦被垃圾回收或其父进程退出就会关闭。<code>manager</code> 类的定义位于 <code>multiprocessing.managers</code> 模块。</p>
 </blockquote></p>
 <p>multiprocessing.managers.<strong>BaseManager</strong>([address[, authkey]])<br><blockquote><p>创建 <code>BaseManager</code> 对象。<br>创建后应该调用 <code>start()</code> 或 <code>get_server().serve_forever()</code> 方法保证 <code>manager</code> 对象引用的进程开启。<br><em>address</em> 是 <code>manager</code> 进程监听的新连接的地址，若该参数为 <code>None</code> 则系统随机分配一个对应于某些空闲端口号的地址。<br><em>authkey</em> 身份认证密钥，用于检查连接到服务进程的有效性。若该参数为 <code>None</code> 则使用 <code>current_process().authkey</code>。若使用该参数，其类型是 byte 字符串类型。</p>
