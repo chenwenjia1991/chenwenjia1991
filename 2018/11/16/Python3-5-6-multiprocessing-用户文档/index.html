@@ -158,7 +158,7 @@
 <meta property="og:site_name" content="码农驿站">
 <meta property="og:description" content="最近在做 Python 内存优化时，发现 multiprocessing 可以充分利用 CPU 的多核特性，且可以在执行完任务后释放所有的资源，只保留需要的结果即可，可以避免 Python 的垃圾回收过慢的弊病，同时带来执行效率的提升。同时，之前的 Python 资料书籍更关注于 Python 多线程部分，而对多进程的讲解应用较少。于是开始阅读该部分文档和源码，本篇博客是其官网文档 multipr">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-11-24T09:25:29.066Z">
+<meta property="og:updated_time" content="2018-11-26T02:24:13.987Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Python3.5.6 multiprocessing 用户文档">
 <meta name="twitter:description" content="最近在做 Python 内存优化时，发现 multiprocessing 可以充分利用 CPU 的多核特性，且可以在执行完任务后释放所有的资源，只保留需要的结果即可，可以避免 Python 的垃圾回收过慢的弊病，同时带来执行效率的提升。同时，之前的 Python 资料书籍更关注于 Python 多线程部分，而对多进程的讲解应用较少。于是开始阅读该部分文档和源码，本篇博客是其官网文档 multipr">
@@ -433,7 +433,7 @@
                 
                   <span class="post-meta-item-text">Edited on</span>
                 
-                <time title="Modified: 2018-11-24 17:25:29" itemprop="dateModified" datetime="2018-11-24T17:25:29+08:00">2018-11-24</time>
+                <time title="Modified: 2018-11-26 10:24:13" itemprop="dateModified" datetime="2018-11-26T10:24:13+08:00">2018-11-26</time>
               
             
           </span>
@@ -597,8 +597,48 @@
 <p><strong>task_done</strong>()<br>表明之前排队过的任务已经完成。由队列的消费者使用。对于每个使用 <code>get()</code> 方法获取任务的消费者后续调用该方法告知队列任务完成。<br>若调用 <code>join()</code> 方法，会阻塞至队列中的所有任务均被完成（即调用 <code>put()</code> 方法放入队列中的每个任务都收到了 <code>task_done</code> 回调）。<br>若该方法的调用次数超过了队列中放置的任务数量，会引发 <code>ValueError</code> 异常。</p>
 <p><strong>join</strong>()<br>阻塞至放入到队列中的所有任务均被处理完成。<br>每当有新的任务加入到队列中，未完成的任务数量就会增加。每当消费者调用了 <code>task_done()</code> 告知队列任务完成，未完成的任务数量就会下降。当未完成任务数量的计数将至零时，该方法的阻塞不再阻塞。</p>
 </blockquote></p>
-<h4 id="Miscellaneous"><a href="#Miscellaneous" class="headerlink" title="Miscellaneous"></a>Miscellaneous</h4><p>On the way!</p>
-<h4 id="Connection-Objects"><a href="#Connection-Objects" class="headerlink" title="Connection Objects"></a>Connection Objects</h4><p>On the way!</p>
+<h4 id="Miscellaneous"><a href="#Miscellaneous" class="headerlink" title="Miscellaneous"></a>Miscellaneous</h4><p>multiprocessing.<strong>active_children</strong>()<br>返回当前进程活跃的子进程列表。<br>使用该函数会对已经结束的子进程调用 <code>poll()</code> 方法的副作用。<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># CPython 3.5.2 /Lib/multiprocessing/queues.py</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">active_children</span><span class="params">()</span>:</span></span><br><span class="line">    children = current_process()._children</span><br><span class="line">    <span class="keyword">for</span> p <span class="keyword">in</span> list(children):</span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> p.is_alive():</span><br><span class="line">            children.pop(p, <span class="keyword">None</span>)</span><br><span class="line">    <span class="keyword">return</span> list(children)</span><br></pre></td></tr></table></figure></p>
+<p>multiprocessing.<strong>cpu_count</strong>()<br>返回系统的 CPU 数量，可能抛出 <code>NotImplementedError</code>。<br><div class="note info"><p>可同时参阅 <a href="https://docs.python.org/3.5/library/os.html#os.cpu_count" target="_blank" rel="noopener"><code>os.cpu_count()</code></a> </p></div>
+
+multiprocessing.**current_process**()
+返回与当前进程一致的进程对象。
+与 `threading.current_thread()` 类似。
+
+multiprocessing.**freeze_support**()
+添加了冻结程序的多进程的支持以产生 Windows 可执行文件。（已使用 `py2exe`，`PyInstaller` 和 `cx_Freeze` 进行过测试。）
+需要在主函数的 `if __name__ == '__main__':` 代码后调用该函数，实例如下
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> multiprocessing <span class="keyword">import</span> Process, freeze_support</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">f</span><span class="params">()</span>:</span></span><br><span class="line">    print(<span class="string">'hello world!'</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:</span><br><span class="line">    freeze_support()</span><br><span class="line">    Process(target=f).start()</span><br></pre></td></tr></table></figure>
+若省略了 `freeze_support()` 行代码去执行冻结的可执行文件会抛出 `RuntimeError` 异常。
+在 Windows 系统外任何其他系统上运行该函数无效；若 Windows 环境下 Python 解释器正常运行模块（程序没有被冻结），该函数无效。
+
+multiprocessing.**get_all_start_methods**()
+返回所有支持的 `start()` 方式列表，第一个是默认方式。可能的方式有 `fork`、`spawn` 和 `forkserver`。Windows 系统下只支持 `spawn` 方式。Unix 系统下支持 `fork` 和 `spawn` 方式，默认是 `fork` 方式。
+版本 3.4 后添加。
+
+multiprocessing.**get_context**(*method=None*)
+返回与 `multiprocessing` 模块相同属性的 `context` 对象。
+若参数 `method` 为 `None`，返回默认 `context`；否则参数 `method` 应该为 `fork`，`spawn`，`forkserver`。若 `start()` 的方式系统不支持会抛出 `ValueError` 异常。
+版本 3.4 后添加。
+
+multiprocessing.**get_start_method**(*allow_none=False*)
+返回启动进程方式的名称。
+若 `start()` 方式未确定且参数 `allow_none` 是 `False`，`start()` 启动方式被设置为默认值并返回默认方式的名称。若 `start()` 方式没有被确定且参数 `allow_none` 是 `True` 返回 `None`。
+返回值可以是 `fork`，`spawn`，`forkserver` 或 `None`。Unix 默认 `fork`，Windows 默认 `spawn`。
+版本 3.4 后添加。
+
+multiprocessing.**set_executable**()
+设置启动子进程时 Python 解释器路径。（默认使用 `sys.executable`）。嵌入式在子进程创建之前，很可能需要做类似于如下的事情。
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">set_executable(os.path.join(sys.exec_prefix, <span class="string">'pythonw.ext'</span>))</span><br></pre></td></tr></table></figure>
+版本 3.4 之后 Unix 支持使用 `spawn` 方式启动子进程。
+
+multiprocessing.**set_start_method**(*method*)
+设置子进程的 `start()` 方式，可以是 `fork`，`spawn` 或者 `forkserver`。
+注意，该函数至多被调用一次，且应该在主模块的 `if __name__ == '__main__':` 子句中进行保护。
+版本 3.4 后添加。
+
+<div class="note info"><p>注：<code>multiprocessing</code> 不包含如下类似方法 <code>threading.active_count()</code>、<code>threading.enumerate()</code>、<code>threading.settrace()</code>、<code>threading.setprofile()</code>、<code>threading.Timer</code> 和 <code>threading.local</code>。</p></div></p>
+<h4 id="Connection-Objects"><a href="#Connection-Objects" class="headerlink" title="Connection Objects"></a>Connection Objects</h4><p><code>Connection</code> 对象可以发送和接收序列化的对象或字符串，它们可以被看做是面向消息的套接字。<br><code>Connection</code> 对象一般使用 <code>Pipe()</code> 方法创建 - 参阅 <a href="#2.10">Listeners &amp;&amp; Clients</a></p>
+<p><em>class</em> multiprocessing.<strong>Connection</strong><br><blockquote></blockquote></p>
 <h4 id="Synchronization-primitives"><a href="#Synchronization-primitives" class="headerlink" title="Synchronization primitives"></a>Synchronization primitives</h4><p>On the way!</p>
 <h4 id="Shared-ctypes-Objects"><a href="#Shared-ctypes-Objects" class="headerlink" title="Shared ctypes Objects"></a>Shared ctypes Objects</h4><p>On the way!</p>
 <h4 id="Manager"><a href="#Manager" class="headerlink" title="Manager"></a>Manager</h4><p><code>Manager</code> 提供了一种在不同进程间共享创建的数据的方式，包括在不同计算机运行的进程之间通过网络共享。<code>Manager</code> 对象管理一个共享对象的服务进程，其他进程通过使用代理获取共享对象。</p>
@@ -650,7 +690,7 @@
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> multiprocessing <span class="keyword">import</span> Process, Queue</span><br><span class="line"><span class="keyword">from</span> multiprocessing.managers <span class="keyword">import</span> BaseManager</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Worker</span><span class="params">(Process)</span>:</span></span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, q)</span>:</span></span><br><span class="line">        self.q = q</span><br><span class="line">        super(Worker, self).__init__()</span><br><span class="line">        </span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">run</span><span class="params">(self)</span>:</span></span><br><span class="line">        self.q.put(<span class="string">'local hello'</span>)</span><br><span class="line"></span><br><span class="line">queue = Queue()</span><br><span class="line">w = Worker(queue)</span><br><span class="line">w.start()</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">QueueManager</span><span class="params">(BaseManager)</span>:</span> </span><br><span class="line">    <span class="keyword">pass</span></span><br><span class="line"></span><br><span class="line">QueueManager.register(<span class="string">'get_queue'</span>, callable=<span class="keyword">lambda</span>: queue)</span><br><span class="line">m = QueueManager(address=(<span class="string">''</span>, <span class="number">50000</span>), authkey=<span class="string">b'abracadabra'</span>)</span><br><span class="line">s = m.get_server()</span><br><span class="line">s.serve_forever()</span><br></pre></td></tr></table></figure>
 <h4 id="Proxy"><a href="#Proxy" class="headerlink" title="Proxy"></a>Proxy</h4><p>On the way!</p>
 <h4 id="Process-Pool"><a href="#Process-Pool" class="headerlink" title="Process Pool"></a>Process Pool</h4><p>On the way!</p>
-<h4 id="Listener-amp-amp-Client"><a href="#Listener-amp-amp-Client" class="headerlink" title="Listener &amp;&amp; Client"></a>Listener &amp;&amp; Client</h4><p>On the way!</p>
+<h4 id="Listener-amp-amp-Client"><a href="#Listener-amp-amp-Client" class="headerlink" title="Listener &amp;&amp; Client"></a><span id="2.10">Listener &amp;&amp; Client</span></h4><p>On the way!</p>
 <h4 id="Authentication-keys"><a href="#Authentication-keys" class="headerlink" title="Authentication keys"></a>Authentication keys</h4><p>On the way!</p>
 <h4 id="Logging"><a href="#Logging" class="headerlink" title="Logging"></a>Logging</h4><p>提供了部分日志支持。但要注意，<code>logging</code> 模块不使用进程共享锁，所以来自不同进程的信息可能混淆（取决于处理程序类型）。</p>
 <p>multiprocessing.<strong>get_logger</strong>()</p>
