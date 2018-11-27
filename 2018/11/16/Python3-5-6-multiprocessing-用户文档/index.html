@@ -158,7 +158,7 @@
 <meta property="og:site_name" content="码农驿站">
 <meta property="og:description" content="最近在做 Python 内存优化时，发现 multiprocessing 可以充分利用 CPU 的多核特性，且可以在执行完任务后释放所有的资源，只保留需要的结果即可，可以避免 Python 的垃圾回收过慢的弊病，同时带来执行效率的提升。同时，之前的 Python 资料书籍更关注于 Python 多线程部分，而对多进程的讲解应用较少。于是开始阅读该部分文档和源码，本篇博客是其官网文档 multipr">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-11-27T13:30:36.595Z">
+<meta property="og:updated_time" content="2018-11-27T13:36:13.340Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Python3.5.6 multiprocessing 用户文档">
 <meta name="twitter:description" content="最近在做 Python 内存优化时，发现 multiprocessing 可以充分利用 CPU 的多核特性，且可以在执行完任务后释放所有的资源，只保留需要的结果即可，可以避免 Python 的垃圾回收过慢的弊病，同时带来执行效率的提升。同时，之前的 Python 资料书籍更关注于 Python 多线程部分，而对多进程的讲解应用较少。于是开始阅读该部分文档和源码，本篇博客是其官网文档 multipr">
@@ -433,7 +433,7 @@
                 
                   <span class="post-meta-item-text">Edited on</span>
                 
-                <time title="Modified: 2018-11-27 21:30:36" itemprop="dateModified" datetime="2018-11-27T21:30:36+08:00">2018-11-27</time>
+                <time title="Modified: 2018-11-27 21:36:13" itemprop="dateModified" datetime="2018-11-27T21:36:13+08:00">2018-11-27</time>
               
             
           </span>
@@ -648,7 +648,7 @@
 <p>multiprocessing.sharedctypes.<strong>RawValue</strong>(<em>typecode_or_type</em>, <em>*args</em>)<br><blockquote><p>返回从共享内存中分配的 ctypes 类型对象。</p>
 <p><em>typecode_or_type</em> 决定了返回数组的元素类型，其是一个 ctypes 类型或者 <code>array</code> 模块使用的一个类型字符串。<em>*args</em> 参数将传递给该类型对象的构造函数。</p>
 <p>注：读写元素是非原子性的 - 使用 <code>Value()</code> 通过锁确保其实原子性的。</p>
-<p>注：<code>ctypes.c_char</code> 数组具有 <code>value</code> he  <code>raw</code> 属性，可以通过该属性存储和检索字符串。</p>
+<p>注：<code>ctypes.c_char</code> 数组具有 <code>value</code> 和  <code>raw</code> 属性，可以通过该属性存储和检索字符串。</p>
 </blockquote></p>
 <p>multiprocessing.sharedctypes.<strong>Array</strong>(<em>typecode_or_type</em>, <em>size_or_initializer</em>, <em>, </em>lock=True*)<br><blockquote><p>除需依赖锁类型变量确保线程安全，可以返回进程安全的修饰器而不是原始 ctypes 数组外，与 <code>RawArray()</code> 一样。</p>
 <p>若参数 <em>lock</em> 为 <code>True</code>（默认值），会创建一个锁以同步对该值的访问。如果 <em>lock</em> 是 <code>Lock</code> 或 <code>RLock</code> 对象类型，将用于对同步值权限的保护。若 <em>lock</em> 是 <code>False</code>，则锁不会自动保护对返回对象的访问，因此将不是进程安全的。</p>
@@ -702,17 +702,17 @@
 <h4 id="Manager"><a href="#Manager" class="headerlink" title="Manager"></a><span id="2.7">Manager</span></h4><p><code>Manager</code> 提供了一种在不同进程间共享创建的数据的方式，包括在不同计算机运行的进程之间通过网络共享。<code>Manager</code> 对象管理一个共享对象的服务进程，其他进程通过使用代理获取共享对象。</p>
 <p>Multiprocessing.<strong>Manager()</strong><br><blockquote><p>返回一个 <code>SyncManager</code> 对象，可以用来在进程间共享对象。返回的 <code>manager</code> 对象对应一个生成的子进程，该子进程会创建共享对象并返回相应的代理方法。<br><code>manager</code> 进程一旦被垃圾回收或其父进程退出就会关闭。<code>manager</code> 类的定义位于 <code>multiprocessing.managers</code> 模块。</p>
 </blockquote></p>
-<p>multiprocessing.managers.<strong>BaseManager</strong>([address[, authkey]])<br><blockquote><p>创建 <code>BaseManager</code> 对象。<br>创建后应该调用 <code>start()</code> 或 <code>get_server().serve_forever()</code> 方法保证 <code>manager</code> 对象引用的进程开启。<br><em>address</em> 是 <code>manager</code> 进程监听的新连接的地址，若该参数为 <code>None</code> 则系统随机分配一个对应于某些空闲端口号的地址。<br><em>authkey</em> 身份认证密钥，用于检查连接到服务进程的有效性。若该参数为 <code>None</code> 则使用 <code>current_process().authkey</code>。若使用该参数，其类型是 byte 字符串类型。</p>
-<p><strong>start</strong>([initializer[, initargs]])<br><code>manager</code> 开启子进程。若构造函数不为空，启动时调用构造函数 <code>initializer(*initargs)</code>。</p>
+<p>multiprocessing.managers.<strong>BaseManager</strong>([<em>address</em>[, <em>authkey</em>]])<br><blockquote><p>创建 <code>BaseManager</code> 对象。<br>创建后应该调用 <code>start()</code> 或 <code>get_server().serve_forever()</code> 方法保证 <code>manager</code> 对象引用的进程开启。<br><em>address</em> 是 <code>manager</code> 进程监听的新连接的地址，若该参数为 <code>None</code> 则系统随机分配一个对应于某些空闲端口号的地址。<br><em>authkey</em> 身份认证密钥，用于检查连接到服务进程的有效性。若该参数为 <code>None</code> 则使用 <code>current_process().authkey</code>。若使用该参数，其类型是 byte 字符串类型。</p>
+<p><strong>start</strong>([<em>initializer</em>[, <em>initargs</em>]])<br><code>manager</code> 开启子进程。若构造函数不为空，启动时调用构造函数 <code>initializer(*initargs)</code>。</p>
 <p><strong>get_server</strong>()<br>返回 <code>manager</code> 对象控制下的真实服务器 <code>Server</code>，该类型支持 <code>serve_forever()</code> 方法。</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> multiprocessing.managers <span class="keyword">import</span> BaseManager</span><br><span class="line">manager = BaseManager(address=(<span class="string">''</span>, <span class="number">50000</span>), authkey=<span class="string">b'abc'</span>)</span><br><span class="line">server = manaager.get_server()</span><br><span class="line">server.serve_forever()</span><br></pre></td></tr></table></figure>`Server` 类型具有 `address` 属性，由 `manager` 对象使用的地址。
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> multiprocessing.managers <span class="keyword">import</span> BaseManager</span><br><span class="line">manager = BaseManager(address=(<span class="string">''</span>, <span class="number">50000</span>), authkey=<span class="string">b'abc'</span>)</span><br><span class="line">server = manaager.get_server()</span><br><span class="line">server.serve_forever()</span><br></pre></td></tr></table></figure> `Server` 类型具有 `address` 属性，由 `manager` 对象使用的地址。
 
 **Connect**()
 连接一个本地的 `manager` 对象到远程 `manager` 进程。
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> multiprocessing.managers <span class="keyword">import</span> BaseManager</span><br><span class="line">m = BaseManager(address=(<span class="string">'127.0.0.1'</span>, <span class="number">5000</span>), authkey=<span class="string">b'abc'</span>)</span><br><span class="line">m.connect()</span><br></pre></td></tr></table></figure>
 
 <p><strong>shutdown</strong>()<br>终止 <code>manager</code> 进程。该方法只有在服务进程执行过 <code>start()</code> 方法后才有效。<br>该方法可以被多次调用。</p>
-<p><span id="basemanager.register"><strong>register</strong>(typeid[, callable[, proxytype[, exposed[, method_to_typeid[, create_method]]]]])</span><br>classmethod，用于注册类型或调用 <code>manager</code>。</p>
+<p><span id="basemanager.register"><strong>register</strong>(<em>typeid</em>[, <em>callable</em>[, <em>proxytype</em>[, <em>exposed</em>[, <em>method_to_typeid</em>[, <em>create_method</em>]]]]])</span><br>类方法，用于注册类型或调用 <code>manager</code>。</p>
 <p><em>typeid</em> 是类型标识符，用于识别共享对象的类型，字符串类型。</p>
 <p><em>callable</em> 是用于创建该类型对象的调用。若 <code>manager</code> 实例使用 <code>connect()</code> 方法连接到服务器或设置 <code>create_method</code> 参数为 <code>False</code> 该参数可以设置为 <code>None</code>。</p>
 <p><em>proxytype</em> 是 <code>BaseProxy</code> 的子类，用于为该类型的共享对象创建代理。若该参数为 <code>None</code>，则自动创建代理。</p>
@@ -723,19 +723,19 @@
 <p><strong>address</strong><br>由 <code>manager</code> 使用的地址。<br>版本 3.3 后的变化：<code>manager</code> 对象支持上下文管理协议。</p>
 </blockquote></p>
 <p>multiprocessing.managers.<strong>SyncManager</strong><br><blockquote><p><code>BaseManager</code> 的子类，用于进程间同步。<code>multiprocessing.Manager()</code> 返回的对象类型。<br>同样支持创建共享 List 和 Dict。</p>
-<p><strong>Barrier</strong>(parties[, action[, timeout]])<br>创建共享 <code>threading.Barrier</code> 对象并返回其代理。3.3 版本后引入。</p>
-<p><strong>BoundedSemaphore</strong>([value])<br>创建共享 <code>threading.BoundedSemaphore</code> 对象并返回其代理。</p>
-<p><strong>Condition</strong>([lock])<br>创建共享 <code>threading.Condition</code> 对象并返回其代理。<br>若创建的共享对象类型包含 <code>lock</code>则返回值是 <code>threading.Lock</code> 或 <code>threading.RLock</code> 对象。<br>3.3 版本后添加了 <code>wait_for()</code> 方法。</p>
+<p><strong>Barrier</strong>(<em>parties</em>[, <em>action</em>[, <em>timeout</em>]])<br>创建共享 <code>threading.Barrier</code> 对象并返回其代理。3.3 版本后引入。</p>
+<p><strong>BoundedSemaphore</strong>([<em>value</em>])<br>创建共享 <code>threading.BoundedSemaphore</code> 对象并返回其代理。</p>
+<p><strong>Condition</strong>([<em>lock</em>])<br>创建共享 <code>threading.Condition</code> 对象并返回其代理。<br>若创建的共享对象类型包含 <code>lock</code>则返回值是 <code>threading.Lock</code> 或 <code>threading.RLock</code> 对象。<br>3.3 版本后添加了 <code>wait_for()</code> 方法。</p>
 <p><strong>Event</strong>()<br>创建共享 <code>threading.Event</code> 对象并返回其代理。</p>
 <p><strong>Lock</strong>()<br>创建共享 <code>threading.Lock</code> 对象并返回其代理。</p>
 <p><strong>Namespace</strong>()<br>创建共享 <code>Namespace</code> 对象并返回其代理。</p>
-<p><strong>Queue</strong>([maxsize])<br>创建共享 <code>queue.Queue</code> 对象并返回其代理。</p>
+<p><strong>Queue</strong>([<em>maxsize</em>])<br>创建共享 <code>queue.Queue</code> 对象并返回其代理。</p>
 <p><strong>RLock</strong>()<br>创建共享 <code>threading.RLock</code> 对象并返回其代理。</p>
-<p><strong>Semaphore</strong>([value])<br>创建共享 <code>threading.Semaphore</code> 对象并返回其代理。</p>
-<p><strong>Array</strong>(typecode, sequence)<br>创建一个 Array 并返回其代理。</p>
-<p><strong>Value</strong>(typecode, value)<br>创建带有可写属性 <code>value</code> 的对象并返回其代理。</p>
-<p><strong>dict</strong>() &amp; <strong>dict</strong>(mapping) &amp; <strong>dict</strong>(sequence)<br>创建共享 <code>dict</code> 对象并返回其代理。</p>
-<p><strong>list</strong>() &amp; <strong>list</strong>(sequence)<br>创建共享 <code>list</code> 对象并返回其代理。<br>注：对 dict 或 list 的代理中可变值或可变项的修改可能不会通过 <code>manager</code> 传播，因为代理无法知道其值或项在何时被修改的。因此，要修改此类值或项，需要将修改后的对象重新赋值给 <code>manager</code> 包含的代理。</p>
+<p><strong>Semaphore</strong>([<em>value</em>])<br>创建共享 <code>threading.Semaphore</code> 对象并返回其代理。</p>
+<p><strong>Array</strong>(<em>typecode</em>, <em>sequence</em>)<br>创建一个 Array 并返回其代理。</p>
+<p><strong>Value</strong>(<em>typecode</em>, <em>value</em>)<br>创建带有可写属性 <code>value</code> 的对象并返回其代理。</p>
+<p><strong>dict</strong>() &amp; <strong>dict</strong>(<em>mapping</em>) &amp; <strong>dict</strong>(<em>sequence</em>)<br>创建共享 <code>dict</code> 对象并返回其代理。</p>
+<p><strong>list</strong>() &amp; <strong>list</strong>(<em>sequence</em>)<br>创建共享 <code>list</code> 对象并返回其代理。<br>注：对 dict 或 list 的代理中可变值或可变项的修改可能不会通过 <code>manager</code> 传播，因为代理无法知道其值或项在何时被修改的。因此，要修改此类值或项，需要将修改后的对象重新赋值给 <code>manager</code> 包含的代理。</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># create a list proxy and append a mutable object (a dictionary)</span></span><br><span class="line">lproxy = manager.list()</span><br><span class="line">lproxy.append(&#123;&#125;)</span><br><span class="line"><span class="comment"># now mutate the dictionary</span></span><br><span class="line">d = lproxy[<span class="number">0</span>]</span><br><span class="line">d[<span class="string">'a'</span>] = <span class="number">1</span></span><br><span class="line">d[<span class="string">'b'</span>] = <span class="number">2</span></span><br><span class="line"><span class="comment"># at this point, the changes to d are not yet synced, but by</span></span><br><span class="line"><span class="comment"># reassigning the dictionary, the roxy is notified of the change</span></span><br><span class="line">lproxy[<span class="number">0</span>] = d</span><br></pre></td></tr></table></figure></blockquote></p>
 <p>mulltiprocessing.managers.<strong>Namespace</strong><br><blockquote><p>可以注册 <code>SyncManager</code> 的类型。<br>一个 <code>Namespace</code> 对象没有公开方法，但有可写属性，其代表它属性的值。<br>然后，当使用 <code>Namespace</code> 对象的代理时，其以 ‘_’ 开头名字的属性是代理的属性而不是引用对象的属性。</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">manager = multiprocessing.Manager()</span><br><span class="line">Global = manager.Namespace()</span><br><span class="line">Global.x = <span class="number">10</span></span><br><span class="line">Global.y = <span class="string">'hello'</span></span><br><span class="line">Global._z = <span class="number">12.3</span>    <span class="comment"># this is an attribute of the proxy</span></span><br><span class="line">print(Global)</span><br><span class="line"><span class="comment"># Namespace(x=10, y='hello')</span></span><br></pre></td></tr></table></figure></blockquote></p>
@@ -767,7 +767,7 @@
 </blockquote></p>
 <h5 id="Cleanup"><a href="#Cleanup" class="headerlink" title="Cleanup"></a>Cleanup</h5><p>代理对象使用的弱引用回调，当被垃圾回收时，会从拥有其引用的 manager 中注销自己。<br>共享对象不再被任何代理对象引用时，从 manager 进程中删除。</p>
 <h4 id="Process-Pool"><a href="#Process-Pool" class="headerlink" title="Process Pool"></a>Process Pool</h4><p>创建进程池，可以执行使用 <code>Pool</code> 类提交给它的任务。</p>
-<p>class multiprocessing.pool.Pool([processes[, initializer[, initargs[, maxtasksperchild[, context]]]]])<br><blockquote><p>进程池对象，可以控制提交任务的工作进程池，支持异步获取超时或回调结果，具有并行映射的实现。<br><em>processes</em> 是使用的工作进程数量。若该参数为 <code>None</code> 使用 <code>os.cpu_count()</code> 返回的数字。<br>若 <em>initializer</em> 不是 <code>None</code> 则在每个进程 <code>start()</code> 时调用该 <code>initializer(*initargs)</code> 函数。<br><em>maxtasksperchild</em> 是一个工作进程在退出或使用新工作进程取代之前可以完成的任务数，以释放不再使用的资源。默认值是 <code>None</code> 意味着工作进程生命周期与进程池一样。<br><em>context</em> 可用于指定工作进程 <code>start()</code> 的 context。通常通过使用 <code>multiprocessing.Pool()</code> 或者 context 对象的 <code>Pool()</code> 方法创建进程池。两种情景均可以使用 <em>context</em> 设置。<br>注：进程池对象的方法仅可以由创建进程池的进程调用。<br>版本 3.2 后添加了 <em>maxtasksperchild</em>。<br>版本 3.4 后添加了 <em>context</em>。</p>
+<p>class multiprocessing.pool.<strong>Pool</strong>([<em>processes</em>[, <em>initializer</em>[, <em>initargs</em>[, <em>maxtasksperchild</em>[, <em>context</em>]]]]])<br><blockquote><p>进程池对象，可以控制提交任务的工作进程池，支持异步获取超时或回调结果，具有并行映射的实现。<br><em>processes</em> 是使用的工作进程数量。若该参数为 <code>None</code> 使用 <code>os.cpu_count()</code> 返回的数字。<br>若 <em>initializer</em> 不是 <code>None</code> 则在每个进程 <code>start()</code> 时调用该 <code>initializer(*initargs)</code> 函数。<br><em>maxtasksperchild</em> 是一个工作进程在退出或使用新工作进程取代之前可以完成的任务数，以释放不再使用的资源。默认值是 <code>None</code> 意味着工作进程生命周期与进程池一样。<br><em>context</em> 可用于指定工作进程 <code>start()</code> 的 context。通常通过使用 <code>multiprocessing.Pool()</code> 或者 context 对象的 <code>Pool()</code> 方法创建进程池。两种情景均可以使用 <em>context</em> 设置。<br>注：进程池对象的方法仅可以由创建进程池的进程调用。<br>版本 3.2 后添加了 <em>maxtasksperchild</em>。<br>版本 3.4 后添加了 <em>context</em>。</p>
 <p><div class="note info"><p>注：工作进程的生命周期通常与进程池生命周期一直。在其他系统（如 Apache，mode_wsgi 等）存在频繁切换进程时，在进程退出或者新进程取代旧进程前，释放用于工作进程所拥有的资源的模式。<em>maxtasksperchild</em> 参数向用户公开了进程池的这种能力。</p></div> <strong>apply</strong>(<em>func</em>[, <em>args</em>[, <em>kwds</em>]])<br>使用参数 <em>args</em> 和 关键字参数 <em>kwds</em> 调用 <em>func</em> 函数。会阻塞至任务执行结果就绪。<code>apply_async()</code> 方法更适合阻塞下的并行执行任务。此外，<em>func</em> 仅在进程池中的一个工作进程中执行。</p>
 <p><strong>apply_async</strong>(<em>func</em>[, <em>args</em>[, <em>kwds</em>[, <em>callback</em>[, <em>error_callback</em>]]]])<br><code>apply()</code> 方法的一个变体，返回一个结果对象。<br>若指定了参数 <em>callback</em>，该参数值应该是带有一个参数的可调用函数。当结果就绪时，对结果调用该函数。若该情况下调用失败，<code>error_callback</code> 异常取代返回结果。<br>若指定了参数 <em>error_callback</em>，该参数值是带有一个参数的可调用函数。当目标函数执行实行，则异常实例作为参数调用该函数。<br>回调应该是很快完成的，否则处理结果线程将会阻塞。</p>
 <p><strong>map</strong>(<em>func</em>, <em>iterable</em>[, <em>chunksize</em>])<br>内置 <code>map()</code> 的并行等价物（只支持一个 <em>iterable</em> 参数）。阻塞至结果就绪。<br>该方法将迭代对象切分为多个块并将其作为单独任务提交到进程池。可以通过参数 <em>chunksize</em> 设置为正整数指定这些块的（近似）大小。</p>
