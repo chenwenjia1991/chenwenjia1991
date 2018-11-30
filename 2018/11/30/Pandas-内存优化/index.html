@@ -150,25 +150,28 @@
 
 
 
-  <meta name="description" content="在2018年的第四个季度，在花费了将近一周的时间之后，最终搭起了自己的个人博客。 这是自己搭起来的第三个博客，前两个完成搭建工作之后逐渐无疾而终，在这次花费最多的时间与精力下，期望本次的博客可以长久不衰~">
-<meta name="keywords" content="杂记">
+  <meta name="description" content="Pandas 是数据分析中常用的一个 Python 库。本文主要讲述 Pandas 内存优化。其中数据读入存储的部分参考资料 简单又实用的pandas技巧：如何将内存占用降低90%，该部分内容在网上有较多说明与介绍。本文更多篇幅放在 Pandas 的 DataFrame 类型中如何进行新列的添加。">
+<meta name="keywords" content="Pandas,内存优化">
 <meta property="og:type" content="article">
-<meta property="og:title" content="为什么开始写博客">
-<meta property="og:url" content="https://chenwenjia1991.github.io/2018/10/25/为什么开始写博客/index.html">
+<meta property="og:title" content="Pandas 内存优化">
+<meta property="og:url" content="https://chenwenjia1991.github.io/2018/11/30/Pandas-内存优化/index.html">
 <meta property="og:site_name" content="码农驿站">
-<meta property="og:description" content="在2018年的第四个季度，在花费了将近一周的时间之后，最终搭起了自己的个人博客。 这是自己搭起来的第三个博客，前两个完成搭建工作之后逐渐无疾而终，在这次花费最多的时间与精力下，期望本次的博客可以长久不衰~">
+<meta property="og:description" content="Pandas 是数据分析中常用的一个 Python 库。本文主要讲述 Pandas 内存优化。其中数据读入存储的部分参考资料 简单又实用的pandas技巧：如何将内存占用降低90%，该部分内容在网上有较多说明与介绍。本文更多篇幅放在 Pandas 的 DataFrame 类型中如何进行新列的添加。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-11-21T03:17:50.979Z">
+<meta property="og:image" content="https://blogimages-1252423296.cos.ap-beijing.myqcloud.com/blog_pictures/11%E6%9C%88/11-4-compare-1.png">
+<meta property="og:image" content="https://blogimages-1252423296.cos.ap-beijing.myqcloud.com/blog_pictures/11%E6%9C%88/11-5-compare-2.png">
+<meta property="og:updated_time" content="2018-11-30T07:57:04.076Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="为什么开始写博客">
-<meta name="twitter:description" content="在2018年的第四个季度，在花费了将近一周的时间之后，最终搭起了自己的个人博客。 这是自己搭起来的第三个博客，前两个完成搭建工作之后逐渐无疾而终，在这次花费最多的时间与精力下，期望本次的博客可以长久不衰~">
+<meta name="twitter:title" content="Pandas 内存优化">
+<meta name="twitter:description" content="Pandas 是数据分析中常用的一个 Python 库。本文主要讲述 Pandas 内存优化。其中数据读入存储的部分参考资料 简单又实用的pandas技巧：如何将内存占用降低90%，该部分内容在网上有较多说明与介绍。本文更多篇幅放在 Pandas 的 DataFrame 类型中如何进行新列的添加。">
+<meta name="twitter:image" content="https://blogimages-1252423296.cos.ap-beijing.myqcloud.com/blog_pictures/11%E6%9C%88/11-4-compare-1.png">
 
 
 
 
 
 
-  <link rel="canonical" href="https://chenwenjia1991.github.io/2018/10/25/为什么开始写博客/">
+  <link rel="canonical" href="https://chenwenjia1991.github.io/2018/11/30/Pandas-内存优化/">
 
 
 
@@ -178,7 +181,7 @@
   };
 </script>
 
-  <title>为什么开始写博客 | 码农驿站</title>
+  <title>Pandas 内存优化 | 码农驿站</title>
   
 
 
@@ -374,7 +377,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://chenwenjia1991.github.io/2018/10/25/为什么开始写博客/">
+    <link itemprop="mainEntityOfPage" href="https://chenwenjia1991.github.io/2018/11/30/Pandas-内存优化/">
 
     <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
       <meta itemprop="name" content="陈文嘉">
@@ -391,7 +394,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">为什么开始写博客
+          <h1 class="post-title" itemprop="name headline">Pandas 内存优化
               
             
           </h1>
@@ -416,24 +419,12 @@
                 
               
 
-              <time title="Created: 2018-10-25 17:20:49" itemprop="dateCreated datePublished" datetime="2018-10-25T17:20:49+08:00">2018-10-25</time>
+              <time title="Created: 2018-11-30 14:10:17 / Modified: 15:57:04" itemprop="dateCreated datePublished" datetime="2018-11-30T14:10:17+08:00">2018-11-30</time>
             
 
             
               
 
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">Edited on</span>
-                
-                <time title="Modified: 2018-11-21 11:17:50" itemprop="dateModified" datetime="2018-11-21T11:17:50+08:00">2018-11-21</time>
               
             
           </span>
@@ -450,7 +441,7 @@
                 <span class="post-meta-item-text">In</span>
               
               
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/随笔/" itemprop="url" rel="index"><span itemprop="name">随笔</span></a></span>
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/Python/" itemprop="url" rel="index"><span itemprop="name">Python</span></a></span>
 
                 
                 
@@ -491,28 +482,66 @@
       
 
       
-        <p>在2018年的第四个季度，在花费了将近一周的时间之后，最终搭起了自己的个人博客。</p>
-<p>这是自己搭起来的第三个博客，前两个完成搭建工作之后逐渐无疾而终，在这次花费最多的时间与精力下，期望本次的博客可以长久不衰~</p>
+        <p><code>Pandas</code> 是数据分析中常用的一个 Python 库。本文主要讲述 <code>Pandas</code> 内存优化。其中数据读入存储的部分参考资料 <a href="https://www.jiqizhixin.com/articles/2018-03-07-3" target="_blank" rel="noopener">简单又实用的pandas技巧：如何将内存占用降低90%</a>，该部分内容在网上有较多说明与介绍。本文更多篇幅放在 Pandas 的 DataFrame 类型中如何进行新列的添加。</p>
 <a id="more"></a>
-<h3 id="为什么要写博客"><a href="#为什么要写博客" class="headerlink" title="为什么要写博客"></a>为什么要写博客</h3><p>三年前，朋友向我推荐写博客，将自己的最近踩过的坑或者看过学到的知识做一总结分享出来，比如开发架构，比如算法分析，比如机器学习等等。一直觉得所学太浅不值得挂出来，拖拖拉拉许久也未成行。</p>
-<p>直至硕士就业将近，完成了自己在 CSDN 的排序算法总结的第一篇博客，至今已有三年有余，500+的访问量。因各种各样的原因，在 CSDN 的只进行了一次就放弃了。第一次尝试，有收获也有失败之处。分享之后曾收到来自朋友的鼓励以及运行代码的朋友给与的反馈和建议，使得自己对于该部分的知识不仅掌握的更加扎实，理解更深入，同时自己的努力也给刚开始学习该部分知识的其他人带去帮助，也是一种喜悦。后来由于自己的原因以及 CSDN 编写博客的不畅，逐渐放弃了这种总结分享的方式。</p>
-<p>工作之后，通过 GitHub Pages + Hexo + NexT 方式尝试搭建了个人博客。随工作进行，以及工作学习习惯的原因，更多笔记总结多放于印象笔记中，第二个博客渐渐也冷落许久。</p>
-<p>最近随着团队技术积累的建设，团队完成了团队博客的搭建与初步撰写工作。工作以来，积累的很多东西都置于印象笔记中，需要更多的总结回顾与沉淀。因此用一周的时间完成了本博客的搭建及初始化工作。</p>
-<p>此致，希望博客可以长久不衰！</p>
-<h3 id="如何写博客"><a href="#如何写博客" class="headerlink" title="如何写博客"></a>如何写博客</h3><p>什么是博客？个人将其当做记录自身学习成长过程的分享平台。其目的有三：一是回顾总结自身所学所理解认知；二是能给与我情况相似的人以启发，扬长避短；三是时时刻刻可以督促鞭策自己，砥砺前行。</p>
-<p>基于此，本人博客基本围绕三点展开：遇到什么问题、如何去解决这个问题的、最终确定的解决方案。</p>
-<h4 id="定义问题"><a href="#定义问题" class="headerlink" title="定义问题"></a>定义问题</h4><p>在学习工作中，很多时候明确问题是很难的一件事情。也许，终其一生，很多事情我们应对之时总觉得哪里不舒服，却找不到问题的根源；也许，有时候发现自认为的问题原因却不是事情的根源所在，解决了问题不能使得事情完美；也许，更多事情，甚至不知道如何去抽象描述问题。</p>
-<p>因此，定义问题是我们努力的探索的开始，也是如下工作的基石，问题定义的越明确清晰，解的范围越小越容易获得。</p>
-<h4 id="如何解决"><a href="#如何解决" class="headerlink" title="如何解决"></a>如何解决</h4><p>不同的问题，不同的思考角度，不同的利弊权衡，我们总会选出不同的解决方案。该部分我会尽量介绍自己是如何完成了一个问题解的寻求过程，以及遇到的解有哪些利弊，从哪些角度解决问题的。</p>
-<h4 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h4><p>这部分主要完成解的选择理由，以及解决问题的实践过程。当然，有时候这个问题无解也是一种解决方案。人相对于宇宙，未知总是生活的常态。</p>
-<h3 id="写博客的好处"><a href="#写博客的好处" class="headerlink" title="写博客的好处"></a>写博客的好处</h3><p>写博客有很多好处。开始写博客时，可能想到了如下这些，也许在博客的进行过程中，会陆陆续续添加一些新的益处与人分享。</p>
-<h4 id="更多的思考"><a href="#更多的思考" class="headerlink" title="更多的思考"></a>更多的思考</h4><p>首先，写作就是一个深度思考的过程。很多在脑海中的事情，或者已经语言表达过的事情，用文字记录下来会是一个更深刻，更严肃的过程。相比较口语，文字在大多数情况下总有更强的逻辑性与说服力。因此，写博客的过程也是自己对所写内容进行思考回顾的过程。其次，事情完成之后记录下来，站在事情之外去看待问题的定义、解决过程会有更多收获，哪里做的好或者做的不好一目了然。更重要的是分享出来给更多人看到，他人会从更多的角度出发去接受理解这个问题，他们的思考与反馈会给自己更多考虑与帮助。</p>
-<h4 id="逼着自己去学习"><a href="#逼着自己去学习" class="headerlink" title="逼着自己去学习"></a>逼着自己去学习</h4><p>人很多时候都是有惰性的，学习的过程也不总会是顺风顺水开开心心的。因此很多时候人需要逼自己一把，越过高山。博客的撰写除了自己的记录总结，也是接受阅读的朋友们监督推动自己不断前进的过程。</p>
-<h4 id="学会坚持"><a href="#学会坚持" class="headerlink" title="学会坚持"></a>学会坚持</h4><p>坚持做一件事情总是随着坚持时间的加长而愈加困难。学习博客恰是这样一个需要长久坚持的事情，期待自己在这方面可以做的更好更完美。</p>
-<h4 id="博客是一份好的简历"><a href="#博客是一份好的简历" class="headerlink" title="博客是一份好的简历"></a>博客是一份好的简历</h4><p>毋庸置疑，博客相较于简历，更多体现你的知识体系，技能掌握情况等等。与简历相比，内容更丰富。当然，博客可以添加于自己的简历之上，给别人或者工作岗位确认你是否是需要的那个人~获得更匹配的岗位。</p>
-<h4 id="知名度提升"><a href="#知名度提升" class="headerlink" title="知名度提升"></a>知名度提升</h4><p>技术道路上认识更多志同道合的人，除了在碰到一个问题时，多了可以询问咨询解决方案的通道，多了共同探索学习的朋友，你自己也会在技术圈的知名度逐步提升。</p>
-<h4 id="是否需要一个个人博客"><a href="#是否需要一个个人博客" class="headerlink" title="是否需要一个个人博客"></a>是否需要一个个人博客</h4><p>每个人都可以搞一个博客，无论这个博客会对公对私。记录自己的生活学习成长，吸取经验和教训，总是为了让明天的自己成为更好的自己。</p>
-<h3 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h3><p>在开源思潮日益兴盛的今天，博客搭建的难度越来越低，我们可以更关注于我们想做的事情而不是工具的选择。后续，回把自己博客的搭建过程放出来供搭建选择参考。当然也大不必将精力放在博客上太多，更多的我们要关注博客的内容，见证自己的成长。</p>
+<h2 id="问题描述"><a href="#问题描述" class="headerlink" title=" 问题描述 "></a><span id="1"> 问题描述 </span></h2><p>对数据分析师或算法工程师而言，<code>pandas</code> 是一个常用的 Python 库，经常用来进行数据读入，清洗等操作。因此，不可避免的，从文件中读入数据或将数据存入 DataFrame 类型的变量中进行处理。这里主要针对于 DataFrame 变量对象的优化，包含数据读入（即 DataFrame 类型变量初始化）及向 DataFrame 对象中添加新列或产生新变换后的 DataFrame。</p>
+<h2 id="解决思路"><a href="#解决思路" class="headerlink" title=" 解决思路 "></a><span id="2"> 解决思路 </span></h2><p>此处，优化内存使用了 <code>pandas</code> 库函数之外的 <code>memory_profiler</code> 库以监控 Python 进程的内存使用情况，可以分析到每一行代码增减的内存状况，也可以以时间为横轴监控 Python 进程的内存使用情况。此处主要以监控代码行。使用了 <code>datetime</code> 模块监控函数运行时间。</p>
+<h2 id="优化过程"><a href="#优化过程" class="headerlink" title=" 优化过程 "></a><span id="3"> 优化过程 </span></h2><p>该部分主要分为从文件中读入数据与数据的处理变换部分（即对应机器学习中的数据读入与数据预处理）。</p>
+<h3 id="数据读入"><a href="#数据读入" class="headerlink" title=" 数据读入 "></a><span id="3.1"> 数据读入 </span></h3><p>On the way!</p>
+<h3 id="数据预处理"><a href="#数据预处理" class="headerlink" title=" 数据预处理 "></a><span id="3.2"> 数据预处理 </span></h3><p>数据分析中，将数据进行清洗变换得到一份新的数据以进行后续分析训练是常见且高频的操作，此处主要产生新数据的方式进行测试分析。</p>
+<h4 id="模拟预处理"><a href="#模拟预处理" class="headerlink" title="模拟预处理"></a>模拟预处理</h4><p>此处代码主要模拟了两种预处理行为，一列变换为一列（如对数变换，归一化变换，异常值缺失值过滤等情况），一列变为多列（如 OneHot 编码，时间序列分解等）。为方便后续插入到 DataFrame 中，返回为 list 类型的列名与列变换后的值。<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">generate_one</span><span class="params">(field_name, length=<span class="number">5000</span>)</span>:</span></span><br><span class="line">    col_arr = numpy.random.randint(<span class="number">0</span>, <span class="number">10</span>, size=[length])</span><br><span class="line">    <span class="keyword">return</span> [field_name], [col_arr]</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">generate_more_than_one</span><span class="params">(field_name, length=<span class="number">5000</span>)</span>:</span></span><br><span class="line">    col_nums = numpy.random.randint(<span class="number">2</span>, <span class="number">7</span>)</span><br><span class="line">    col_arr = numpy.random.randint(<span class="number">0</span>, <span class="number">2</span>, size=[length, col_nums])</span><br><span class="line">    result_names = list()</span><br><span class="line">    result_values = list()</span><br><span class="line">    <span class="keyword">for</span> idx <span class="keyword">in</span> range(col_nums):</span><br><span class="line">        result_values.append(col_arr[:, idx])</span><br><span class="line">        result_names.append(<span class="string">"_"</span>.join([field_name, str(idx)]))</span><br><span class="line">    <span class="keyword">return</span> result_names, result_values</span><br></pre></td></tr></table></figure> 在列数较多时，随机的方式测试效果更平均，接近于真实项目中的情况。</p>
+<h4 id="预处理方式"><a href="#预处理方式" class="headerlink" title="预处理方式"></a>预处理方式</h4><p>实现测试了两种存储预处理之后列数据的方式，分别为</p>
+<ul>
+<li>原有 DataFrame 变量中调用 <code>reindex</code> 方法加入到原有 DataFrame 变量中；</li>
+<li>原有 DataFrame 变量中逐列加入新列；</li>
+<li>保存预处理后的列名与列值，构建列名到列值的映射，调用 DataFrame 初始化方法构建新变量。</li>
+</ul>
+<p>代码实现如下<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy</span><br><span class="line"><span class="keyword">import</span> pandas</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">analog_pre_process_reindex</span><span class="params">(data_size=<span class="params">(<span class="number">5000</span>, <span class="number">300</span>)</span>)</span>:</span></span><br><span class="line">    length, cols = data_size</span><br><span class="line">    processed_df = pandas.DataFrame()</span><br><span class="line">    processed_df[<span class="string">"target"</span>] = numpy.random.randint(<span class="number">0</span>, <span class="number">3</span>, size=[length])</span><br><span class="line">    <span class="comment"># generate the test data length * cols include the target</span></span><br><span class="line">    <span class="comment"># but result maybe has more cols</span></span><br><span class="line">    <span class="comment"># default OneHot:Standard=1:1</span></span><br><span class="line">    cur_field_names = processed_df.columns.tolist()</span><br><span class="line">    <span class="keyword">for</span> field_index <span class="keyword">in</span> range(<span class="number">1</span>, cols):</span><br><span class="line">        field_name = str(field_index)</span><br><span class="line">        <span class="keyword">if</span> field_index % <span class="number">2</span> == <span class="number">0</span>:</span><br><span class="line">            processed_names, processed_values = generate_one(</span><br><span class="line">                field_name=field_name, length=length)</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            processed_names, processed_values = generate_more_than_one(</span><br><span class="line">                field_name=field_name, length=length)</span><br><span class="line"></span><br><span class="line">        cur_field_names.extend(processed_names)</span><br><span class="line">        processed_df = processed_df.reindex(</span><br><span class="line">                columns=cur_field_names, copy=<span class="keyword">False</span>)</span><br><span class="line">        processed_df[processed_names] = numpy.array(processed_values).T</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> processed_df</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">analog_pre_process_one_to_df</span><span class="params">(data_size=<span class="params">(<span class="number">5000</span>, <span class="number">300</span>)</span>)</span>:</span></span><br><span class="line">    length, cols = data_size</span><br><span class="line">    processed_df = pandas.DataFrame()</span><br><span class="line">    processed_df[<span class="string">"target"</span>] = numpy.random.randint(<span class="number">0</span>, <span class="number">3</span>, size=[length])</span><br><span class="line">    <span class="comment"># generate the test data length * cols include the target</span></span><br><span class="line">    <span class="comment"># but result maybe has more cols</span></span><br><span class="line">    <span class="comment"># default OneHot:Standard=1:1</span></span><br><span class="line">    <span class="keyword">for</span> field_index <span class="keyword">in</span> range(<span class="number">1</span>, cols):</span><br><span class="line">        field_name = str(field_index)</span><br><span class="line">        <span class="keyword">if</span> field_index % <span class="number">2</span> == <span class="number">0</span>:</span><br><span class="line">            processed_names, processed_values = generate_one(</span><br><span class="line">                field_name=field_name, length=length)</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            processed_names, processed_values = generate_more_than_one(</span><br><span class="line">                field_name=field_name, length=length)</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span> index <span class="keyword">in</span> range(len(processed_names)):</span><br><span class="line">            one_field_name = processed_names[index]</span><br><span class="line">            one_field_values = processed_values[index]</span><br><span class="line">            processed_df[one_field_name] = one_field_values</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> processed_df</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">analog_pre_process_list</span><span class="params">(data_size=<span class="params">(<span class="number">5000</span>, <span class="number">300</span>)</span>)</span>:</span></span><br><span class="line">    length, cols = data_size</span><br><span class="line">    col_names = [<span class="string">"target"</span>]</span><br><span class="line">    col_values = [numpy.random.randint(<span class="number">0</span>, <span class="number">3</span>, size=[length])]</span><br><span class="line">    <span class="comment"># generate the test data length * cols include the target</span></span><br><span class="line">    <span class="comment"># but result maybe has more cols</span></span><br><span class="line">    <span class="comment"># default OneHot:Standard=1:1</span></span><br><span class="line">    <span class="keyword">for</span> field_index <span class="keyword">in</span> range(<span class="number">1</span>, cols):</span><br><span class="line">        field_name = str(field_index)</span><br><span class="line">        <span class="keyword">if</span> field_index % <span class="number">2</span> == <span class="number">0</span>:</span><br><span class="line">            processed_names, processed_values = generate_one(</span><br><span class="line">                field_name=field_name, length=length)</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            processed_names, processed_values = generate_more_than_one(</span><br><span class="line">                field_name=field_name, length=length)</span><br><span class="line"></span><br><span class="line">        col_names.extend(processed_names)</span><br><span class="line">        col_values.extend(processed_values)</span><br><span class="line"></span><br><span class="line">    fields_num = len(col_names)</span><br><span class="line">    data_dict = &#123;col_names[idx]: col_values[idx]</span><br><span class="line">                 <span class="keyword">for</span> idx <span class="keyword">in</span> range(fields_num)&#125;</span><br><span class="line">    <span class="keyword">return</span> pandas.DataFrame(data_dict)</span><br></pre></td></tr></table></figure> 此处，特征数量中一列变换到一列与一列变换到多列的比例为1:1，原有 DataFrame 变量中只有目标分类列（由数据产生方式可看出为三分类数据）。</p>
+<h4 id="测试验证"><a href="#测试验证" class="headerlink" title="测试验证"></a>测试验证</h4><p>测试包含时间与内存消耗两部分，时间测试函数与主函数模块如下<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> datetime <span class="keyword">import</span> datetime</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">record_time</span><span class="params">(func, data_size)</span>:</span></span><br><span class="line">    start_time = datetime.now()</span><br><span class="line">    res = func(data_size)</span><br><span class="line">    end_time = datetime.now()</span><br><span class="line">    <span class="keyword">return</span> res, (end_time - start_time).total_seconds()</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">"__main__"</span>:</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">1</span>, <span class="number">5</span>):</span><br><span class="line">        print(<span class="string">"=============================================================="</span>)</span><br><span class="line">        print(<span class="string">"DataSize is %s * %s !"</span> % (<span class="number">5000</span>*i, <span class="number">300</span>*i))</span><br><span class="line">        df, cost_time = record_time(</span><br><span class="line">            func=analog_pre_process_one_to_df, data_size=(<span class="number">5000</span> * i, <span class="number">300</span> * i))</span><br><span class="line">        <span class="comment">#   func=analog_pre_process_reindex, data_size=(5000 * i, 300 * i))</span></span><br><span class="line">        <span class="comment">#   func=analog_pre_process_list, data_size=(5000 * i, 300 * i))</span></span><br><span class="line">        <span class="keyword">del</span> df</span><br><span class="line">        print(<span class="string">"CostTime = %s seconds!"</span> % cost_time)</span><br></pre></td></tr></table></figure></p>
+<p>为避免同时测试对性能的影响，此处对每种方式均单独测试运行，分布测试数据量为 (5000*300)、(10000*600)、(15000*900) 及 (20000*1200) 数据量的情况，时间代价如下（单位为秒）。</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th style="text-align:left"></th>
+<th style="text-align:center"><strong>analog_pre_process_reindex</strong></th>
+<th style="text-align:center"><strong>analog_pre_process_one_to_df</strong></th>
+<th style="text-align:center"><strong>analog_pre_process_list</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left"><strong>(5000*300)</strong></td>
+<td style="text-align:center">5.89472</td>
+<td style="text-align:center">0.292583</td>
+<td style="text-align:center">0.069674</td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>(10000*600)</strong></td>
+<td style="text-align:center">48.151761</td>
+<td style="text-align:center">1.250182</td>
+<td style="text-align:center">0.215701</td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>(15000*900)</strong></td>
+<td style="text-align:center">160.599144</td>
+<td style="text-align:center">3.279289</td>
+<td style="text-align:center">0.462308</td>
+</tr>
+<tr>
+<td style="text-align:left"><strong>(20000*1200)</strong></td>
+<td style="text-align:center">763.805195</td>
+<td style="text-align:center">6.772731</td>
+<td style="text-align:center">0.771077</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>内存测试使用 <code>memory_profiler</code> 库函数，对检测函数 <code>func_name</code> 进行内存分析的使用方式如下。此处修饰符 <code>@profile(precision=6)</code> 精度为 6 位小数。<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> memory_profiler <span class="keyword">import</span> profile</span><br><span class="line"></span><br><span class="line"><span class="meta">@profile(precision=6)</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">func_name</span><span class="params">(param...)</span>:</span></span><br><span class="line">    <span class="keyword">pass</span></span><br><span class="line"></span><br></pre></td></tr></table></figure> 运行三次分别得到的结果对比如下图所示<br><img src="https://blogimages-1252423296.cos.ap-beijing.myqcloud.com/blog_pictures/11%E6%9C%88/11-4-compare-1.png" width="80%"></p>
+<p><img src="https://blogimages-1252423296.cos.ap-beijing.myqcloud.com/blog_pictures/11%E6%9C%88/11-5-compare-2.png" width="80%"><br>此处时间略大于不进行内存测试时的时间，因为使用该模块进行内存监控会降低代码的运行速度，属于正常现象。</p>
+<h4 id="分析-amp-amp-结论"><a href="#分析-amp-amp-结论" class="headerlink" title="分析 &amp;&amp; 结论"></a>分析 &amp;&amp; 结论</h4><p>On the way!</p>
+<h3 id="环境说明"><a href="#环境说明" class="headerlink" title="环境说明"></a>环境说明</h3><p>On the way!</p>
+<h2 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h2><p>On the way!</p>
 
       
     </div>
@@ -562,7 +591,9 @@
       
         <div class="post-tags">
           
-            <a href="/tags/杂记/" rel="tag"># 杂记</a>
+            <a href="/tags/Pandas/" rel="tag"># Pandas</a>
+          
+            <a href="/tags/内存优化/" rel="tag"># 内存优化</a>
           
         </div>
       
@@ -575,15 +606,15 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
+              <a href="/2018/11/16/Python3-5-6-multiprocessing-用户文档/" rel="next" title="Python3.5.6 multiprocessing 用户文档">
+                <i class="fa fa-chevron-left"></i> Python3.5.6 multiprocessing 用户文档
+              </a>
+            
           </div>
 
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2018/11/01/GitHub-Pages-Hexo-搭建博客/" rel="prev" title="GitHub Pages + Hexo 搭建博客">
-                GitHub Pages + Hexo 搭建博客 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -763,7 +794,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#为什么要写博客"><span class="nav-number">1.</span> <span class="nav-text">为什么要写博客</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#如何写博客"><span class="nav-number">2.</span> <span class="nav-text">如何写博客</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#定义问题"><span class="nav-number">2.1.</span> <span class="nav-text">定义问题</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#如何解决"><span class="nav-number">2.2.</span> <span class="nav-text">如何解决</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#解决方案"><span class="nav-number">2.3.</span> <span class="nav-text">解决方案</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#写博客的好处"><span class="nav-number">3.</span> <span class="nav-text">写博客的好处</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#更多的思考"><span class="nav-number">3.1.</span> <span class="nav-text">更多的思考</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#逼着自己去学习"><span class="nav-number">3.2.</span> <span class="nav-text">逼着自己去学习</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#学会坚持"><span class="nav-number">3.3.</span> <span class="nav-text">学会坚持</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#博客是一份好的简历"><span class="nav-number">3.4.</span> <span class="nav-text">博客是一份好的简历</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#知名度提升"><span class="nav-number">3.5.</span> <span class="nav-text">知名度提升</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#是否需要一个个人博客"><span class="nav-number">3.6.</span> <span class="nav-text">是否需要一个个人博客</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#后记"><span class="nav-number">4.</span> <span class="nav-text">后记</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#问题描述"><span class="nav-number">1.</span> <span class="nav-text"> 问题描述 </span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#解决思路"><span class="nav-number">2.</span> <span class="nav-text"> 解决思路 </span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#优化过程"><span class="nav-number">3.</span> <span class="nav-text"> 优化过程 </span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#数据读入"><span class="nav-number">3.1.</span> <span class="nav-text"> 数据读入 </span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#数据预处理"><span class="nav-number">3.2.</span> <span class="nav-text"> 数据预处理 </span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#模拟预处理"><span class="nav-number">3.2.1.</span> <span class="nav-text">模拟预处理</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#预处理方式"><span class="nav-number">3.2.2.</span> <span class="nav-text">预处理方式</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#测试验证"><span class="nav-number">3.2.3.</span> <span class="nav-text">测试验证</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#分析-amp-amp-结论"><span class="nav-number">3.2.4.</span> <span class="nav-text">分析 &amp;&amp; 结论</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#环境说明"><span class="nav-number">3.3.</span> <span class="nav-text">环境说明</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#后记"><span class="nav-number">4.</span> <span class="nav-text">后记</span></a></li></ol></div>
             
 
           </div>
