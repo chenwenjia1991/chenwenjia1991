@@ -151,7 +151,7 @@
 
 
   <meta name="description" content="Pandas 是数据分析中常用的一个 Python 库。本文主要讲述 Pandas 内存优化。其中数据读入存储的部分参考资料 简单又实用的pandas技巧：如何将内存占用降低90%，该部分内容在网上有较多说明与介绍。本文更多篇幅放在 Pandas 的 DataFrame 类型中如何进行新列的添加。">
-<meta name="keywords" content="Pandas,内存优化">
+<meta name="keywords" content="Pandas,Python,内存优化">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Pandas 内存优化">
 <meta property="og:url" content="https://chenwenjia1991.github.io/2018/11/30/Pandas-内存优化/index.html">
@@ -160,7 +160,7 @@
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://blogimages-1252423296.cos.ap-beijing.myqcloud.com/blog_pictures/11%E6%9C%88/11-4-compare-1.png">
 <meta property="og:image" content="https://blogimages-1252423296.cos.ap-beijing.myqcloud.com/blog_pictures/11%E6%9C%88/11-5-compare-2.png">
-<meta property="og:updated_time" content="2018-11-30T07:57:04.076Z">
+<meta property="og:updated_time" content="2018-12-02T15:19:08.739Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Pandas 内存优化">
 <meta name="twitter:description" content="Pandas 是数据分析中常用的一个 Python 库。本文主要讲述 Pandas 内存优化。其中数据读入存储的部分参考资料 简单又实用的pandas技巧：如何将内存占用降低90%，该部分内容在网上有较多说明与介绍。本文更多篇幅放在 Pandas 的 DataFrame 类型中如何进行新列的添加。">
@@ -419,12 +419,24 @@
                 
               
 
-              <time title="Created: 2018-11-30 14:10:17 / Modified: 15:57:04" itemprop="dateCreated datePublished" datetime="2018-11-30T14:10:17+08:00">2018-11-30</time>
+              <time title="Created: 2018-11-30 14:10:17" itemprop="dateCreated datePublished" datetime="2018-11-30T14:10:17+08:00">2018-11-30</time>
             
 
             
               
 
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="Modified: 2018-12-02 23:19:08" itemprop="dateModified" datetime="2018-12-02T23:19:08+08:00">2018-12-02</time>
               
             
           </span>
@@ -487,7 +499,9 @@
 <h2 id="问题描述"><a href="#问题描述" class="headerlink" title=" 问题描述 "></a><span id="1"> 问题描述 </span></h2><p>对数据分析师或算法工程师而言，<code>pandas</code> 是一个常用的 Python 库，经常用来进行数据读入，清洗等操作。因此，不可避免的，从文件中读入数据或将数据存入 DataFrame 类型的变量中进行处理。这里主要针对于 DataFrame 变量对象的优化，包含数据读入（即 DataFrame 类型变量初始化）及向 DataFrame 对象中添加新列或产生新变换后的 DataFrame。</p>
 <h2 id="解决思路"><a href="#解决思路" class="headerlink" title=" 解决思路 "></a><span id="2"> 解决思路 </span></h2><p>此处，优化内存使用了 <code>pandas</code> 库函数之外的 <code>memory_profiler</code> 库以监控 Python 进程的内存使用情况，可以分析到每一行代码增减的内存状况，也可以以时间为横轴监控 Python 进程的内存使用情况。此处主要以监控代码行。使用了 <code>datetime</code> 模块监控函数运行时间。</p>
 <h2 id="优化过程"><a href="#优化过程" class="headerlink" title=" 优化过程 "></a><span id="3"> 优化过程 </span></h2><p>该部分主要分为从文件中读入数据与数据的处理变换部分（即对应机器学习中的数据读入与数据预处理）。</p>
-<h3 id="数据读入"><a href="#数据读入" class="headerlink" title=" 数据读入 "></a><span id="3.1"> 数据读入 </span></h3><p>On the way!</p>
+<h3 id="数据读入"><a href="#数据读入" class="headerlink" title=" 数据读入 "></a><span id="3.1"> 数据读入 </span></h3><p>数据读入指将数据从文件读入内存的过程，一般载入内存存入到 DataFrame 类型变量中。因此，数据读入部分的内存优化主要为 DataFrame 存储方式的优化。</p>
+<h4 id="结论-amp-amp-分析"><a href="#结论-amp-amp-分析" class="headerlink" title="结论 &amp;&amp; 分析"></a>结论 &amp;&amp; 分析</h4><p>参考 <code>pandas</code> 中 <em>DataFrame</em> 类的构造函数，</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"></span><br></pre></td></tr></table></figure>
 <h3 id="数据预处理"><a href="#数据预处理" class="headerlink" title=" 数据预处理 "></a><span id="3.2"> 数据预处理 </span></h3><p>数据分析中，将数据进行清洗变换得到一份新的数据以进行后续分析训练是常见且高频的操作，此处主要产生新数据的方式进行测试分析。</p>
 <h4 id="模拟预处理"><a href="#模拟预处理" class="headerlink" title="模拟预处理"></a>模拟预处理</h4><p>此处代码主要模拟了两种预处理行为，一列变换为一列（如对数变换，归一化变换，异常值缺失值过滤等情况），一列变为多列（如 OneHot 编码，时间序列分解等）。为方便后续插入到 DataFrame 中，返回为 list 类型的列名与列变换后的值。<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">generate_one</span><span class="params">(field_name, length=<span class="number">5000</span>)</span>:</span></span><br><span class="line">    col_arr = numpy.random.randint(<span class="number">0</span>, <span class="number">10</span>, size=[length])</span><br><span class="line">    <span class="keyword">return</span> [field_name], [col_arr]</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">generate_more_than_one</span><span class="params">(field_name, length=<span class="number">5000</span>)</span>:</span></span><br><span class="line">    col_nums = numpy.random.randint(<span class="number">2</span>, <span class="number">7</span>)</span><br><span class="line">    col_arr = numpy.random.randint(<span class="number">0</span>, <span class="number">2</span>, size=[length, col_nums])</span><br><span class="line">    result_names = list()</span><br><span class="line">    result_values = list()</span><br><span class="line">    <span class="keyword">for</span> idx <span class="keyword">in</span> range(col_nums):</span><br><span class="line">        result_values.append(col_arr[:, idx])</span><br><span class="line">        result_names.append(<span class="string">"_"</span>.join([field_name, str(idx)]))</span><br><span class="line">    <span class="keyword">return</span> result_names, result_values</span><br></pre></td></tr></table></figure> 在列数较多时，随机的方式测试效果更平均，接近于真实项目中的情况。</p>
 <h4 id="预处理方式"><a href="#预处理方式" class="headerlink" title="预处理方式"></a>预处理方式</h4><p>实现测试了两种存储预处理之后列数据的方式，分别为</p>
@@ -539,7 +553,8 @@
 </div>
 <p>内存测试使用 <code>memory_profiler</code> 库函数，对检测函数 <code>func_name</code> 进行内存分析的使用方式如下。此处修饰符 <code>@profile(precision=6)</code> 精度为 6 位小数。<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> memory_profiler <span class="keyword">import</span> profile</span><br><span class="line"></span><br><span class="line"><span class="meta">@profile(precision=6)</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">func_name</span><span class="params">(param...)</span>:</span></span><br><span class="line">    <span class="keyword">pass</span></span><br><span class="line"></span><br></pre></td></tr></table></figure> 运行三次分别得到的结果对比如下图所示<br><img src="https://blogimages-1252423296.cos.ap-beijing.myqcloud.com/blog_pictures/11%E6%9C%88/11-4-compare-1.png" width="80%"></p>
 <p><img src="https://blogimages-1252423296.cos.ap-beijing.myqcloud.com/blog_pictures/11%E6%9C%88/11-5-compare-2.png" width="80%"><br>此处时间略大于不进行内存测试时的时间，因为使用该模块进行内存监控会降低代码的运行速度，属于正常现象。</p>
-<h4 id="分析-amp-amp-结论"><a href="#分析-amp-amp-结论" class="headerlink" title="分析 &amp;&amp; 结论"></a>分析 &amp;&amp; 结论</h4><p>On the way!</p>
+<h4 id="结论-amp-amp-分析-1"><a href="#结论-amp-amp-分析-1" class="headerlink" title="结论 &amp;&amp; 分析"></a>结论 &amp;&amp; 分析</h4><p>由上述测试结果明显可以得出结论，将获取到的所有预处理数据统一初始化构造为 DataFrame 对象是比向 DataFrame 变量中插入数据具有更高效的处理方式。在数据预处理中逐次添加一列或多列数据到 DataFrame 均会带来内存的增加与执行速度的降低。<br>使用字典初始化 DataFrame 执行如下代码函数<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">On the way!</span><br></pre></td></tr></table></figure></p>
+<h4 id="分析-amp-amp-结论"><a href="#分析-amp-amp-结论" class="headerlink" title="分析 &amp;&amp; 结论"></a>分析 &amp;&amp; 结论</h4><p>由上述</p>
 <h3 id="环境说明"><a href="#环境说明" class="headerlink" title="环境说明"></a>环境说明</h3><p>On the way!</p>
 <h2 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h2><p>On the way!</p>
 
@@ -592,6 +607,8 @@
         <div class="post-tags">
           
             <a href="/tags/Pandas/" rel="tag"># Pandas</a>
+          
+            <a href="/tags/Python/" rel="tag"># Python</a>
           
             <a href="/tags/内存优化/" rel="tag"># 内存优化</a>
           
@@ -794,7 +811,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#问题描述"><span class="nav-number">1.</span> <span class="nav-text"> 问题描述 </span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#解决思路"><span class="nav-number">2.</span> <span class="nav-text"> 解决思路 </span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#优化过程"><span class="nav-number">3.</span> <span class="nav-text"> 优化过程 </span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#数据读入"><span class="nav-number">3.1.</span> <span class="nav-text"> 数据读入 </span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#数据预处理"><span class="nav-number">3.2.</span> <span class="nav-text"> 数据预处理 </span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#模拟预处理"><span class="nav-number">3.2.1.</span> <span class="nav-text">模拟预处理</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#预处理方式"><span class="nav-number">3.2.2.</span> <span class="nav-text">预处理方式</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#测试验证"><span class="nav-number">3.2.3.</span> <span class="nav-text">测试验证</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#分析-amp-amp-结论"><span class="nav-number">3.2.4.</span> <span class="nav-text">分析 &amp;&amp; 结论</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#环境说明"><span class="nav-number">3.3.</span> <span class="nav-text">环境说明</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#后记"><span class="nav-number">4.</span> <span class="nav-text">后记</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#问题描述"><span class="nav-number">1.</span> <span class="nav-text"> 问题描述 </span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#解决思路"><span class="nav-number">2.</span> <span class="nav-text"> 解决思路 </span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#优化过程"><span class="nav-number">3.</span> <span class="nav-text"> 优化过程 </span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#数据读入"><span class="nav-number">3.1.</span> <span class="nav-text"> 数据读入 </span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#结论-amp-amp-分析"><span class="nav-number">3.1.1.</span> <span class="nav-text">结论 &amp;&amp; 分析</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#数据预处理"><span class="nav-number">3.2.</span> <span class="nav-text"> 数据预处理 </span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#模拟预处理"><span class="nav-number">3.2.1.</span> <span class="nav-text">模拟预处理</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#预处理方式"><span class="nav-number">3.2.2.</span> <span class="nav-text">预处理方式</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#测试验证"><span class="nav-number">3.2.3.</span> <span class="nav-text">测试验证</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#结论-amp-amp-分析-1"><span class="nav-number">3.2.4.</span> <span class="nav-text">结论 &amp;&amp; 分析</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#分析-amp-amp-结论"><span class="nav-number">3.2.5.</span> <span class="nav-text">分析 &amp;&amp; 结论</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#环境说明"><span class="nav-number">3.3.</span> <span class="nav-text">环境说明</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#后记"><span class="nav-number">4.</span> <span class="nav-text">后记</span></a></li></ol></div>
             
 
           </div>
