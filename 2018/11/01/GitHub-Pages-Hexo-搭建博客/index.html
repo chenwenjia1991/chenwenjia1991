@@ -160,7 +160,7 @@
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://blogimages-1252423296.cos.ap-beijing.myqcloud.com/blog_pictures/11%E6%9C%88/11-1-NexT_Default.png">
 <meta property="og:image" content="https://blogimages-1252423296.cos.ap-beijing.myqcloud.com/blog_pictures/11%E6%9C%88/11-3-markdown-quote-error-view.png">
-<meta property="og:updated_time" content="2018-11-30T06:11:06.325Z">
+<meta property="og:updated_time" content="2018-12-04T04:06:18.942Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="GitHub Pages + Hexo 搭建博客">
 <meta name="twitter:description" content="在决定写博客之后，我们首要面临的问题就是如何完成个人博客的初始化工作。此处，个人选择了 GitHub Pages + Hexo 的博客搭建方案。对博客方案选择过程有兴趣的或者有自身明确需求的读客可以阅读 博客的需求 和 博客搭建的选择 两部分以决定是否阅读本博客的方案，若决定使用与本博客同样的解决方案，可以直接阅读本博客的方案。">
@@ -436,7 +436,7 @@
                 
                   <span class="post-meta-item-text">Edited on</span>
                 
-                <time title="Modified: 2018-11-30 14:11:06" itemprop="dateModified" datetime="2018-11-30T14:11:06+08:00">2018-11-30</time>
+                <time title="Modified: 2018-12-04 12:06:18" itemprop="dateModified" datetime="2018-12-04T12:06:18+08:00">2018-12-04</time>
               
             
           </span>
@@ -603,7 +603,7 @@
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;blog_folder&gt; $ hexo new page categories</span><br></pre></td></tr></table></figure>
 <p>成功后提示</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">INFO  Created: ~/Documents/blog/source/categories/index.md</span><br></pre></td></tr></table></figure>
-<p>正该 index.md 文件中，添加字段 type: “categories”</p>
+<p>正该 index.md 文件中，添加字段 type: &quot;categories&quot;</p>
 <figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">&lt;blog_folder&gt;</span> <span class="string">$</span> <span class="string">cat</span> <span class="string">source/categories/index.md</span></span><br><span class="line"><span class="meta">---</span></span><br><span class="line"><span class="attr">title:</span> <span class="string">categories</span></span><br><span class="line"><span class="attr">date:</span> <span class="number">2018</span><span class="bullet">-10</span><span class="bullet">-25</span> <span class="number">23</span><span class="string">:22:17</span></span><br><span class="line"><span class="attr">comments:</span> <span class="literal">false</span></span><br><span class="line"><span class="attr">type:</span> <span class="string">"categories"</span></span><br><span class="line"><span class="meta">---</span></span><br></pre></td></tr></table></figure>
 <ol>
 <li>文章中添加 “categories” 属性即可，如下</li>
@@ -625,7 +625,7 @@
 <p>服务启动过程中，注意观察命令行输出是否有任何异常信息，若碰到问题，这些信息可帮助更好的定位问题。</p>
 <p>当命令行输出如下提示时，可以使用浏览器访问<code>http://localhost:4000</code>检查站点是否正常运行。</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">INFO  Hexo is running at http://0.0.0.0:4000/. Press Ctrl+C to stop.</span><br></pre></td></tr></table></figure>
-<p>当看到的站点外观与下图所示类似时说明已成功安装 NexT 主题。这是默认的 Schema — Muse。<br><img src="https://blogimages-1252423296.cos.ap-beijing.myqcloud.com/blog_pictures/11%E6%9C%88/11-1-NexT_Default.png" alt="avatar" title="Next 默认样式"></p>
+<p>当看到的站点外观与下图所示类似时说明已成功安装 NexT 主题。这是默认的 Schema -- Muse。<br><img src="https://blogimages-1252423296.cos.ap-beijing.myqcloud.com/blog_pictures/11%E6%9C%88/11-1-NexT_Default.png" alt="avatar" title="Next 默认样式"></p>
 <h6 id="选择-Schema"><a href="#选择-Schema" class="headerlink" title="选择 Schema"></a>选择 Schema</h6><p>Schema 是 NexT 提供的一种特性，以提供多种不同的外观，几乎所有配置均可以在不同 Scheme 之间功用。目前支持了四种 Scheme，在希望启用的 scheme 前去掉注释 <code>#</code>即可。</p>
 <figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># ---------------------------------------------------------------</span></span><br><span class="line"><span class="comment"># Scheme Settings</span></span><br><span class="line"><span class="comment"># ---------------------------------------------------------------</span></span><br><span class="line"><span class="comment"># Schemes</span></span><br><span class="line"><span class="comment">#scheme: Muse  # 默认主题，NexT 的最初版，黑白主调，大量留白</span></span><br><span class="line"><span class="comment">#scheme: Mist  # Muse 的紧凑版本，整洁有序的单栏外观</span></span><br><span class="line"><span class="attr">scheme:</span> <span class="string">Pisces</span>  <span class="comment"># 双栏，小家碧玉似的清新，此处我采用的外观</span></span><br><span class="line"><span class="comment">#scheme: Gemini  # 与 Pisces 类似</span></span><br></pre></td></tr></table></figure>
 <h6 id="菜单设置"><a href="#菜单设置" class="headerlink" title="菜单设置"></a>菜单设置</h6><ol>
@@ -723,6 +723,7 @@
 
 <p>注：Hexo quote 中引用代码块，注意其解析的不一致。</p>
 </blockquote>
+<p>渲染器更换后，其渲染器配置改为在 &#39;_config.yml&#39; 文件的 <code>kramed</code> 域中进行。默认开启的智能引号转换在中文环境下会将英文引号自动转换为中文的，若不期望该行为发生，配置修改如下。参考 <a href="https://github.com/hexojs/hexo/issues/1981" target="_blank" rel="noopener">Hexo Issuer 1981</a>。<br><figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Kramed config</span></span><br><span class="line"><span class="attr">kramed:</span></span><br><span class="line"><span class="attr">  smartypants:</span> <span class="literal">false</span></span><br></pre></td></tr></table></figure></p>
 <h3 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h3><p>花费了一周多时间终于完成了本篇博客的撰写。一直在努力避免将一篇博客写的太细太长，不知不觉还是写了很长的篇幅，后续可能考虑拆分博客以为了更好的阅读体验，比如将 Hexo 相关部分独立。</p>
 <p>感谢乐于分享的朋友，本文的很多工作也是在参考他们的博客下完成的；感谢读至此的朋友，完成这篇博客的阅读也花费了您不少的时间与耐心。</p>
 <p>愿你我共同前行~</p>
