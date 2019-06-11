@@ -151,7 +151,7 @@
 
 
   <meta name="description" content="在决定写博客之后，我们首要面临的问题就是如何完成个人博客的初始化工作。此处，个人选择了 GitHub Pages + Hexo 的博客搭建方案。对博客方案选择过程有兴趣的或者有自身明确需求的读客可以阅读 博客的需求 和 博客搭建的选择 两部分以决定是否阅读本博客的方案，若决定使用与本博客同样的解决方案，可以直接阅读本博客的方案。">
-<meta name="keywords" content="GitHub,Hexo,NexT,博客">
+<meta name="keywords" content="Hexo,NexT,博客,GitHub">
 <meta property="og:type" content="article">
 <meta property="og:title" content="GitHub Pages + Hexo 搭建博客">
 <meta property="og:url" content="https://chenwenjia1991.github.io/2018/11/01/GitHub-Pages-Hexo-搭建博客/index.html">
@@ -674,7 +674,7 @@
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#123;% include <span class="string">'gitalk.swig'</span> %&#125;</span><br></pre></td></tr></table></figure>
 </li>
 <li><p>修改主题目录中 <code>/layout/_partials/comments.swig</code>文件，在 endif 语句前前添加如下内容</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&#123;% elseif theme.gitalk.enable %&#125;</span><br><span class="line">&lt;div id=<span class="string">"gitalk-container"</span>&gt;&lt;/div&gt;</span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&#123;% elseif theme.gitalk.enable %&#125;</span><br><span class="line">&lt;div id=<span class="string">"gitalk-container"</span>&gt;<span class="xml"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></span><br></pre></td></tr></table></figure>
 </li>
 <li><p>主题目录下<code>/source/css/_common/components/third-party</code>文件夹中</p>
 <ul>
@@ -782,13 +782,13 @@ print("Hello World!")
       
         <div class="post-tags">
           
-            <a href="/tags/GitHub/" rel="tag"># GitHub</a>
-          
             <a href="/tags/Hexo/" rel="tag"># Hexo</a>
           
             <a href="/tags/NexT/" rel="tag"># NexT</a>
           
             <a href="/tags/博客/" rel="tag"># 博客</a>
+          
+            <a href="/tags/GitHub/" rel="tag"># GitHub</a>
           
         </div>
       
@@ -912,7 +912,7 @@ print("Hello World!")
                     
                       
                     
-                    <span class="site-state-item-count">5</span>
+                    <span class="site-state-item-count">4</span>
                     <span class="site-state-item-name">categories</span>
                   </a>
                 </div>

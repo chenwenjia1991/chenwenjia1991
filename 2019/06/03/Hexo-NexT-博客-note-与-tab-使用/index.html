@@ -158,7 +158,7 @@
 <meta property="og:site_name" content="码农驿站">
 <meta property="og:description" content="在完成的博客网站上，随内容的丰富和完善，对展示内容的格式有进一步的需求和完善。本篇主要介绍 Hexto NexT 中的 note 与 tab 标签的使用，实现不同风格的提示块与选项卡功能。 提示块适用于不同重要程度的内容记录或展示；选项卡功能对于不同版本的代码展示有更好的展示效果。 详细说明如正文所示。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-06-03T08:19:17.376Z">
+<meta property="og:updated_time" content="2019-06-11T09:46:43.292Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Hexo-NexT 博客 note 与 tab 使用">
 <meta name="twitter:description" content="在完成的博客网站上，随内容的丰富和完善，对展示内容的格式有进一步的需求和完善。本篇主要介绍 Hexto NexT 中的 note 与 tab 标签的使用，实现不同风格的提示块与选项卡功能。 提示块适用于不同重要程度的内容记录或展示；选项卡功能对于不同版本的代码展示有更好的展示效果。 详细说明如正文所示。">
@@ -416,12 +416,24 @@
                 
               
 
-              <time title="Created: 2019-06-03 15:24:02 / Modified: 16:19:17" itemprop="dateCreated datePublished" datetime="2019-06-03T15:24:02+08:00">2019-06-03</time>
+              <time title="Created: 2019-06-03 15:24:02" itemprop="dateCreated datePublished" datetime="2019-06-03T15:24:02+08:00">2019-06-03</time>
             
 
             
               
 
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="Modified: 2019-06-11 17:46:43" itemprop="dateModified" datetime="2019-06-11T17:46:43+08:00">2019-06-11</time>
               
             
           </span>
@@ -438,7 +450,7 @@
                 <span class="post-meta-item-text">In</span>
               
               
-                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/DevelopTools/" itemprop="url" rel="index"><span itemprop="name">-DevelopTools</span></a></span>
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/DevelopTools/" itemprop="url" rel="index"><span itemprop="name">DevelopTools</span></a></span>
 
                 
                 
@@ -510,7 +522,7 @@
 <li><code>index</code> 表示起始显示标签页，和 <code>Unique name</code> 用逗号隔开；</li>
 <li><code>Tab caption</code> 表示标签页名；</li>
 <li><code>icon</code> 表示 <a href="https://fontawesome.com/icons?d=gallery" target="_blank" rel="noopener">FontAwesome</a> 符号，以 <code>@</code> 开始，和 <code>Tab caption</code> 用空格隔开；</li>
-<li>每一对 <code><div class="tabs" id=""><ul class="nav-tabs"></ul><div class="tab-content"></div></div></code> 之间表示一个标签块；每一对 <code>&lt;!-- tab --&gt;</code> 和 <code>&lt;!-- endtab --&gt;</code> 之间表示一个标签页，每个标签块可以有多个标签页；</li>
+<li>每一对 <code>tabs</code> 和 <code>endtabs</code> 之间表示一个标签块；每一对 <code>&lt;!-- tab --&gt;</code> 和 <code>&lt;!-- endtab --&gt;</code> 之间表示一个标签页，每个标签块可以有多个标签页；</li>
 <li>标签块名需不一致，否则影响实现。</li>
 </ul>
 </blockquote>
@@ -691,7 +703,7 @@
                     
                       
                     
-                    <span class="site-state-item-count">5</span>
+                    <span class="site-state-item-count">4</span>
                     <span class="site-state-item-name">categories</span>
                   </a>
                 </div>
