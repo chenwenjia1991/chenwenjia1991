@@ -150,24 +150,28 @@
 
 
 
-  <meta name="description" content="Just For Fun">
-<meta name="keywords" content="Code">
-<meta property="og:type" content="website">
-<meta property="og:title" content="码农驿站">
-<meta property="og:url" content="https://chenwenjia1991.github.io/tags/博客/index.html">
+  <meta name="description" content="在业界做机器学习，数据和特征是非常重要的环节，决定了机器学习的上限，而模型和算法只是在逼近这个上限。本文从特征工程、数据挖掘、开源库中的特征分析选择及来自模型的特征分析选择四个方面介绍特征分析。">
+<meta name="keywords" content="特征工程,数据挖掘,机器学习">
+<meta property="og:type" content="article">
+<meta property="og:title" content="机器学习之特征分析">
+<meta property="og:url" content="https://chenwenjia1991.github.io/2019/06/12/机器学习之特征分析/index.html">
 <meta property="og:site_name" content="码农驿站">
-<meta property="og:description" content="Just For Fun">
+<meta property="og:description" content="在业界做机器学习，数据和特征是非常重要的环节，决定了机器学习的上限，而模型和算法只是在逼近这个上限。本文从特征工程、数据挖掘、开源库中的特征分析选择及来自模型的特征分析选择四个方面介绍特征分析。">
 <meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://blogimages-1252423296.cos.ap-beijing.myqcloud.com/blog_pictures/2019Q2/2019-06-12.0-choice.png">
+<meta property="og:image" content="https://blogimages-1252423296.cos.ap-beijing.myqcloud.com/blog_pictures/2019Q2/2019-06-12.2.0-data_mining.png">
+<meta property="og:updated_time" content="2019-06-12T10:14:01.047Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="码农驿站">
-<meta name="twitter:description" content="Just For Fun">
+<meta name="twitter:title" content="机器学习之特征分析">
+<meta name="twitter:description" content="在业界做机器学习，数据和特征是非常重要的环节，决定了机器学习的上限，而模型和算法只是在逼近这个上限。本文从特征工程、数据挖掘、开源库中的特征分析选择及来自模型的特征分析选择四个方面介绍特征分析。">
+<meta name="twitter:image" content="https://blogimages-1252423296.cos.ap-beijing.myqcloud.com/blog_pictures/2019Q2/2019-06-12.0-choice.png">
 
 
 
 
 
 
-  <link rel="canonical" href="https://chenwenjia1991.github.io/tags/博客/">
+  <link rel="canonical" href="https://chenwenjia1991.github.io/2019/06/12/机器学习之特征分析/">
 
 
 
@@ -177,7 +181,7 @@
   };
 </script>
 
-  <title>Tag: 博客 | 码农驿站</title>
+  <title>机器学习之特征分析 | 码农驿站</title>
   
 
 
@@ -226,7 +230,7 @@
     
   
 
-  <div class="container sidebar-position-left ">
+  <div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
@@ -275,7 +279,7 @@
         
         
           
-          <li class="menu-item menu-item-tags menu-item-active">
+          <li class="menu-item menu-item-tags">
     <a href="/tags/" rel="section">
       <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>Tags</a>
   </li>
@@ -353,105 +357,371 @@
           
             
 
-    
-    
-      
-      
-    
-      
-      
-    
-      
-      
-    
-      
-      
-    
-    
-
-  
-
-
           
           <div id="content" class="content">
             
 
-  
-  
-  
-  <div class="post-block tag">
+  <div id="posts" class="posts-expand">
+    
 
-    <div id="posts" class="posts-collapse">
-      <div class="collection-title">
-        <h1>博客<small>Tag</small>
-        </h1>
-      </div>
+  
 
-      
-        
+  
+  
+  
+
+  
 
   <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-    <header class="post-header">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://chenwenjia1991.github.io/2019/06/12/机器学习之特征分析/">
 
-      <h2 class="post-title">
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="陈文嘉">
+      <meta itemprop="description" content="Just For Fun">
+      <meta itemprop="image" content="/images/blog_logos/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="码农驿站">
+    </span>
+
+    
+      <header class="post-header">
+
         
-            <a class="post-title-link" href="/2019/06/03/Hexo-NexT-博客-note-与-tab-使用/" itemprop="url">
-              
-                <span itemprop="name">Hexo-NexT 博客 note 与 tab 使用</span>
-              
-            </a>
         
-      </h2>
+          <h1 class="post-title" itemprop="name headline">机器学习之特征分析
+              
+            
+          </h1>
+        
 
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2019-06-03T15:24:02+08:00" content="2019-06-03">
-          06-03
-        </time>
-      </div>
+        <div class="post-meta">
+          <span class="post-time">
 
-    </header>
-  </article>
+            
+            
+            
 
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2019-06-12 10:43:17 / Modified: 18:14:01" itemprop="dateCreated datePublished" datetime="2019-06-12T10:43:17+08:00">2019-06-12</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing"><a href="/categories/MachineLearning/" itemprop="url" rel="index"><span itemprop="name">MachineLearning</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="post-meta-item-icon">
+            <i class="fa fa-eye"></i>
+             Views:  
+            <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>
+            </span>
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
 
       
-        
+      
 
-  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2018/11/01/GitHub-Pages-Hexo-搭建博客/" itemprop="url">
-              
-                <span itemprop="name">GitHub Pages + Hexo 搭建博客</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2018-11-01T08:29:03+08:00" content="2018-11-01">
-          11-01
-        </time>
-      </div>
-
-    </header>
-  </article>
-
+      
+        <p><img src="https://blogimages-1252423296.cos.ap-beijing.myqcloud.com/blog_pictures/2019Q2/2019-06-12.0-choice.png" width="80%"></p>
+<p>在业界做机器学习，数据和特征是非常重要的环节，决定了机器学习的上限，而模型和算法只是在逼近这个上限。本文从特征工程、数据挖掘、开源库中的特征分析选择及来自模型的特征分析选择四个方面介绍特征分析。</p>
+<a id="more"></a>
+<h3 id="特征工程"><a href="#特征工程" class="headerlink" title="特征工程"></a><span id="1.0">特征工程</span></h3><p>对特征工程而言，大致流程如下</p>
+<ol>
+<li>特征使用方案<ul>
+<li>实现优化目标需要什么数据</li>
+<li>评估数据的可用性：获得难度、覆盖率、准确率</li>
+</ul>
+</li>
+<li>特征获取方案<ul>
+<li>如何获取特征</li>
+<li>如何存储/更新特征</li>
+</ul>
+</li>
+<li>特征处理<ul>
+<li>特征清洗<ul>
+<li>异常样本，如离群点、缺失值</li>
+<li>采样：数据不均衡、样本权重</li>
+</ul>
+</li>
+<li>预处理<ul>
+<li>单特征</li>
+<li>多特征：降维、特征选择 - Filter、Wrapper、Embedded</li>
+<li>衍生变量：对原始数据加工，生成有商业意义的数据</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>可能存在的问题：<ul>
+<li>不属于同一量纲：特征规格不一致</li>
+<li>信息冗余</li>
+<li>定性特征量化</li>
+<li>缺失值</li>
+<li>信息利用率低</li>
+</ul>
+</li>
+<li>特征监控<ul>
+<li>特征有效性分析 - 特征重要性、权重</li>
+<li>特征监控，监控重要特征，防止特征质量的下降影响模型效果</li>
+</ul>
+</li>
+</ol>
+<h3 id="数据挖掘"><a href="#数据挖掘" class="headerlink" title="数据挖掘"></a><span id="2.0">数据挖掘</span></h3><p>数据挖掘角度大致流程如下</p>
+<ol>
+<li>数据清理（消除噪声和删除不一致数据）</li>
+<li>数据集成（多种数据源可以组合在一起）</li>
+<li>数据选择（从数据库中提取分析任务相关的数据）</li>
+<li>数据变换（通过汇总或聚焦操作，把数据变换和统一成适合挖掘的形式）</li>
+<li>数据挖掘（使用智能方法提取数据模式）</li>
+<li>模式评估（根据某种兴趣度度量，识别代码只是的真正有趣的模式）</li>
+<li>知识表示（使用可视化和知识表示技术，向用户提供挖掘的知识）<br> 步骤 1-4 是数据预处理的不同形式，为挖掘准备数据。</li>
+</ol>
+<p>相关数据挖掘技术如</p>
+<ul>
+<li>数据立方体：多维数据模型</li>
+<li>频繁模式挖掘 -&gt; 关联分析（购物篮分析） -&gt; 相关分析：使用支持度、置信度等评估</li>
+</ul>
+<p>数据挖掘的一遍路线如下所示<br><img src="https://blogimages-1252423296.cos.ap-beijing.myqcloud.com/blog_pictures/2019Q2/2019-06-12.2.0-data_mining.png" width="80%"></p>
+<h3 id="开源库中的特征分析"><a href="#开源库中的特征分析" class="headerlink" title="开源库中的特征分析"></a><span id="3.0">开源库中的特征分析</span></h3><p>目前在机器学习领域，<code>Python</code> 的相关开源库更丰富，此处选取了 <code>scikit-learn</code> 与 <code>featuretools</code> 两个开源库。</p>
+<h4 id="scikit-learn"><a href="#scikit-learn" class="headerlink" title="scikit-learn"></a><span id="3.1"><a href="https://github.com/scikit-learn/scikit-learn" target="_blank" rel="noopener">scikit-learn</a></span></h4><p><code>scikit-learn</code> 是一个开源机器学习包，其中直接以 <code>feature</code> 命名的模块有两个 <code>feature_selection</code> 和 <code>feature_extraction</code>，此处主要说明与特征分析相关的 <code>feature_selection</code> 模块，文件结构如下所示。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">feature_extraction</span><br><span class="line">├── __init__.py</span><br><span class="line">├── _hashing.pyx</span><br><span class="line">├── dict_vectorizer.py</span><br><span class="line">├── hashing.py</span><br><span class="line">├── image.py</span><br><span class="line">├── setup.py</span><br><span class="line">├── stop_words.py</span><br><span class="line">├── tests</span><br><span class="line">│   ├── __init__.py</span><br><span class="line">│   ├── test_dict_vectorizer.py</span><br><span class="line">│   ├── test_feature_hasher.py</span><br><span class="line">│   ├── test_image.py</span><br><span class="line">│   └── test_text.py</span><br><span class="line">└── text.py</span><br></pre></td></tr></table></figure>
+<p>该模块主要是特征选择算法的实现，包括单变量过滤选择算法，递归特征消除算法等（<a href="https://scikit-learn.org/stable/modules/classes.html#module-sklearn.feature_selection" target="_blank" rel="noopener">官方文档连接</a>）。<br>主要功能函数如下</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th style="text-align:left">函数</th>
+<th style="text-align:left">函数说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left"><a href="https://scikit-learn.org/stable/modules/generated/sklearn.feature_selection.GenericUnivariateSelect.html#sklearn.feature_selection.GenericUnivariateSelect" target="_blank" rel="noopener">GenericUnivariateSelect</a>([…])</td>
+<td style="text-align:left">Univariate feature selector with configurable strategy.</td>
+</tr>
+<tr>
+<td style="text-align:left"><a href="https://scikit-learn.org/stable/modules/generated/sklearn.feature_selection.SelectPercentile.html#sklearn.feature_selection.SelectPercentile" target="_blank" rel="noopener">SelectPercentile</a>([…])</td>
+<td style="text-align:left">Select features according to a percentile of the highest scores.</td>
+</tr>
+<tr>
+<td style="text-align:left"><a href="https://scikit-learn.org/stable/modules/generated/sklearn.feature_selection.SelectKBest.html#sklearn.feature_selection.SelectKBest" target="_blank" rel="noopener">SelectKBest</a>([score_func, k])</td>
+<td style="text-align:left">Select features according to the k highest scores.</td>
+</tr>
+<tr>
+<td style="text-align:left"><a href="https://scikit-learn.org/stable/modules/generated/sklearn.feature_selection.SelectFpr.html#sklearn.feature_selection.SelectFpr" target="_blank" rel="noopener">SelectFpr</a>([score_func, alpha])</td>
+<td style="text-align:left">Filter: Select the pvalues below alpha based on a FPR test.</td>
+</tr>
+<tr>
+<td style="text-align:left"><a href="https://scikit-learn.org/stable/modules/generated/sklearn.feature_selection.SelectFdr.html#sklearn.feature_selection.SelectFdr" target="_blank" rel="noopener">SelectFdr</a>([score_func, alpha])</td>
+<td style="text-align:left">Filter: Select the p-values for an estimated false discovery rate</td>
+</tr>
+<tr>
+<td style="text-align:left"><a href="https://scikit-learn.org/stable/modules/generated/sklearn.feature_selection.SelectFromModel.html#sklearn.feature_selection.SelectFromModel" target="_blank" rel="noopener">SelectFromModel</a>(estimator)</td>
+<td style="text-align:left">Meta-transformer for selecting features based on importance weights.</td>
+</tr>
+<tr>
+<td style="text-align:left"><a href="https://scikit-learn.org/stable/modules/generated/sklearn.feature_selection.SelectFwe.html#sklearn.feature_selection.SelectFwe" target="_blank" rel="noopener">SelectFwe</a>([score_func, alpha])</td>
+<td style="text-align:left">Filter: Select the p-values corresponding to Family-wise error rate</td>
+</tr>
+<tr>
+<td style="text-align:left"><a href="https://scikit-learn.org/stable/modules/generated/sklearn.feature_selection.RFE.html#sklearn.feature_selection.RFE" target="_blank" rel="noopener">RFE</a>(estimator[, …])</td>
+<td style="text-align:left">Feature ranking with recursive feature elimination.</td>
+</tr>
+<tr>
+<td style="text-align:left"><a href="https://scikit-learn.org/stable/modules/generated/sklearn.feature_selection.RFECV.html#sklearn.feature_selection.RFECV" target="_blank" rel="noopener">RFECV</a>(estimator[, step, …])</td>
+<td style="text-align:left">Feature ranking with recursive feature elimination and cross-validated selection of the best number of features.</td>
+</tr>
+<tr>
+<td style="text-align:left"><a href="https://scikit-learn.org/stable/modules/generated/sklearn.feature_selection.VarianceThreshold.html#sklearn.feature_selection.VarianceThreshold" target="_blank" rel="noopener">VarianceThreshold</a>([threshold])</td>
+<td style="text-align:left">Feature selector that removes all low-variance features.</td>
+</tr>
+<tr>
+<td style="text-align:left"><a href="https://scikit-learn.org/stable/modules/generated/sklearn.feature_selection.chi2.html#sklearn.feature_selection.chi2" target="_blank" rel="noopener">chi2</a>(X, y)</td>
+<td style="text-align:left">Compute chi-squared stats between each non-negative feature and class.</td>
+</tr>
+<tr>
+<td style="text-align:left"><a href="https://scikit-learn.org/stable/modules/generated/sklearn.feature_selection.f_classif.html#sklearn.feature_selection.f_classif" target="_blank" rel="noopener">f_classif</a>(X, y)</td>
+<td style="text-align:left">Compute the ANOVA F-value for the provided sample.</td>
+</tr>
+<tr>
+<td style="text-align:left"><a href="https://scikit-learn.org/stable/modules/generated/sklearn.feature_selection.f_regression.html#sklearn.feature_selection.f_regression" target="_blank" rel="noopener">f_regression</a>(X, y[, center])</td>
+<td style="text-align:left">Univariate linear regression tests.</td>
+</tr>
+<tr>
+<td style="text-align:left"><a href="https://scikit-learn.org/stable/modules/generated/sklearn.feature_selection.mutual_info_classif.html#sklearn.feature_selection.mutual_info_classif" target="_blank" rel="noopener">mutual_info_classif</a>(X, y)</td>
+<td style="text-align:left">Estimate mutual information for a discrete target variable.</td>
+</tr>
+<tr>
+<td style="text-align:left"><a href="https://scikit-learn.org/stable/modules/generated/sklearn.feature_selection.mutual_info_regression.html#sklearn.feature_selection.mutual_info_regression" target="_blank" rel="noopener">mutual_info_regression</a>(X, y)</td>
+<td style="text-align:left">Estimate mutual information for a continuous target variable.</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h4 id="featuretools"><a href="#featuretools" class="headerlink" title="featuretools"></a><span id="3.2"><a href="https://github.com/Featuretools/featuretools" target="_blank" rel="noopener">featuretools</a></span></h4><p><code>featuretools</code> 是一个开源自动化特征工程库，对特征基元使用聚合和转换构造新特征；深度特征合成叠加多个基元构造一个新特征；尽可能多的构造特征，利用此工具构造的新特征集上需进行特征选择或降维。</p>
+<h3 id="模型中的特征分析"><a href="#模型中的特征分析" class="headerlink" title="模型中的特征分析"></a><span id="4.0">模型中的特征分析</span></h3><p>On the way!</p>
+<h3 id="小结"><a href="#小结" class="headerlink" title="小结"></a><span id="5.0">小结</span></h3><p>以上是一些与特征分析相关的方法论或者常用方法，如 ·sklearn· 的特征选择模块代码文件结构与特征工程中特征处理是对应的，大致分为移除低方差特征（即特征分布均匀无明显区分度的特征）、单变量特征选择（依据一定的指标筛选优质特征如相关性、信息增益等）、使用模型筛选优质特征（在模型中该特征有更好的表现效果）、特征融合（即多个特征相关交叉融合等）等四个方向去做特征的加工。</p>
 
       
     </div>
 
+    
+
+    
+    
+    
+
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>坚持原创技术分享，您的支持将鼓励我继续创作!</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>Donate</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/images/reward-images/cwj.wechatpay.png" alt="陈文嘉 WeChat Pay">
+        <p>WeChat Pay</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/images/reward-images/cwj.alipay.png" alt="陈文嘉 Alipay">
+        <p>Alipay</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/特征工程/" rel="tag"># 特征工程</a>
+          
+            <a href="/tags/数据挖掘/" rel="tag"># 数据挖掘</a>
+          
+            <a href="/tags/机器学习/" rel="tag"># 机器学习</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/06/03/Hexo-NexT-博客-note-与-tab-使用/" rel="next" title="Hexo-NexT 博客 note 与 tab 使用">
+                <i class="fa fa-chevron-left"></i> Hexo-NexT 博客 note 与 tab 使用
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
   </div>
   
   
   
+  </article>
 
-  
+
+  </div>
 
 
           </div>
           
+
+  
+    <div id="gitalk-container"></div>
+
+  
+
+
 
 
         </div>
@@ -473,8 +743,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
             
@@ -603,6 +882,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#特征工程"><span class="nav-number">1.</span> <span class="nav-text">特征工程</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#数据挖掘"><span class="nav-number">2.</span> <span class="nav-text">数据挖掘</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#开源库中的特征分析"><span class="nav-number">3.</span> <span class="nav-text">开源库中的特征分析</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#scikit-learn"><span class="nav-number">3.1.</span> <span class="nav-text">scikit-learn</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#featuretools"><span class="nav-number">3.2.</span> <span class="nav-text">featuretools</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#模型中的特征分析"><span class="nav-number">4.</span> <span class="nav-text">模型中的特征分析</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#小结"><span class="nav-number">5.</span> <span class="nav-text">小结</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
@@ -752,6 +1047,10 @@
 
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=6.4.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=6.4.2"></script>
+
+
 
   
 
@@ -774,6 +1073,24 @@
 
 
 
+
+  <link rel="stylesheet" href="https://unpkg.com/gitalk/dist/gitalk.css">
+  <script src="https://unpkg.com/gitalk/dist/gitalk.min.js"></script>
+
+  <script src="/js/src/md5.min.js"></script>
+
+  <script type="text/javascript">
+        var gitalk = new Gitalk({
+          clientID: '624af454fbd3bc142b0b',
+          clientSecret: 'd8177a709f7052c6bef2978f8be2bc041949ecc4',
+          repo: 'Gitalk-Comment',
+          owner: 'chenwenjia1991',
+          admin: ['chenwenjia1991'],
+          id: md5(location.pathname),
+          distractionFreeMode: 'true'
+        })
+        gitalk.render('gitalk-container')           
+       </script>
 
 
 
