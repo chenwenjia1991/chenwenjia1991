@@ -160,7 +160,7 @@
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://blogimages-1252423296.cos.ap-beijing.myqcloud.com/blog_pictures/2019Q2/2019-06-12.0-choice.png">
 <meta property="og:image" content="https://blogimages-1252423296.cos.ap-beijing.myqcloud.com/blog_pictures/2019Q2/2019-06-12.2.0-data_mining.png">
-<meta property="og:updated_time" content="2019-06-13T08:11:22.717Z">
+<meta property="og:updated_time" content="2019-06-13T08:21:42.845Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="机器学习之特征分析">
 <meta name="twitter:description" content="在业界做机器学习，数据和特征是非常重要的环节，决定了机器学习的上限，而模型和算法只是在逼近这个上限。本文从特征工程、数据挖掘、开源库中的特征分析选择及来自模型的特征分析选择四个方面介绍特征分析。">
@@ -436,7 +436,7 @@
                 
                   <span class="post-meta-item-text">Edited on</span>
                 
-                <time title="Modified: 2019-06-13 16:11:22" itemprop="dateModified" datetime="2019-06-13T16:11:22+08:00">2019-06-13</time>
+                <time title="Modified: 2019-06-13 16:21:42" itemprop="dateModified" datetime="2019-06-13T16:21:42+08:00">2019-06-13</time>
               
             
           </span>
@@ -631,7 +631,7 @@
 </div>
 <h4 id="featuretools"><a href="#featuretools" class="headerlink" title="featuretools"></a><span id="3.2"><a href="https://github.com/Featuretools/featuretools" target="_blank" rel="noopener">featuretools</a></span></h4><p><code>featuretools</code> 是一个开源自动化特征工程库，对特征基元使用聚合和转换构造新特征；深度特征合成叠加多个基元构造一个新特征；尽可能多的构造特征，利用此工具构造的新特征集上需进行特征选择或降维。</p>
 <h3 id="模型中的特征分析"><a href="#模型中的特征分析" class="headerlink" title="模型中的特征分析"></a><span id="4.0">模型中的特征分析</span></h3><p>1、LR 模型中特征对结果影响的权重系数<br>2、决策树中特征选择<br>构建决策树通常采用自上而下的方法，在每一步选择一个最好的属性来分类，最好的定义有不同的指标。<br>常用指标如 Gini Impurity、信息增益等。<br>3、XGBoost 模型重要度计算<br>重要度的类型有 gain、weight、cover、total_gain、total_cover。<br>4、其他模型<br>提升方法，通过改变数据权重与弱分类器权重的思想提升模型效果；<br>bagging 方法通过随机采样在细分领域选择特征子集构造窄领域专家的方式提升模型效果。</p>
-<h3 id="小结"><a href="#小结" class="headerlink" title="小结"></a><span id="5.0">小结</span></h3><p>以上是一些与特征分析相关的方法论或者常用方法，如 ·sklearn· 的特征选择模块代码文件结构与特征工程中特征处理是对应的，大致分为移除低方差特征（即特征分布均匀无明显区分度的特征）、单变量特征选择（依据一定的指标筛选优质特征如相关性、信息增益等）、使用模型筛选优质特征（在模型中该特征有更好的表现效果）、特征融合（即多个特征相关交叉融合等）等四个方向去做特征的加工。</p>
+<h3 id="小结"><a href="#小结" class="headerlink" title="小结"></a><span id="5.0">小结</span></h3><p>以上是一些与特征分析相关的方法论或者常用方法，如 <code>sklearn</code> 的特征选择模块代码文件结构与特征工程中特征处理是对应的，大致分为移除低方差特征（即特征分布均匀无明显区分度的特征）、单变量特征选择（依据一定的指标筛选优质特征如相关性、信息增益等）、使用模型筛选优质特征（在模型中该特征有更好的表现效果）、特征融合（即多个特征相关交叉融合等）等四个方向去做特征的加工。</p>
 
       
     </div>
